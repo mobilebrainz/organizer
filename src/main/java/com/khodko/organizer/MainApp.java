@@ -22,12 +22,15 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private LocalDate date = LocalDate.now();
+    private WeekSchedule weekSchedule = new WeekSchedule();
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Organizer");
         initRootLayout();
+
+        //weekSchedule.write();
 
         showDaySchedule();
     }

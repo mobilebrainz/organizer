@@ -11,39 +11,19 @@
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.khodko.organizer.controller.AddTeachersDialogController">
-    <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
-            <children>
-                <HBox>
-                    <children>
-                        <Label minHeight="24.0" text="Преподаватель:">
-                            <HBox.margin>
-                                <Insets right="10.0"/>
-                            </HBox.margin>
-                        </Label>
-                        <TextField fx:id="teacherField" minWidth="250.0"/>
-                    </children>
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </HBox>
-                <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить">
-                    <VBox.margin>
-                        <Insets bottom="10.0" top="10.0"/>
-                    </VBox.margin>
-                </Button>
-                <ListView fx:id="listView" prefWidth="400.0">
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </ListView>
-                <Button mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить">
-                    <VBox.margin>
-                        <Insets top="10.0"/>
-                    </VBox.margin>
-                </Button>
-            </children>
-        </VBox>
-    </children>
+    <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+          AnchorPane.topAnchor="10.0">
+        <HBox>
+            <Label minHeight="24.0" text="Преподаватель:">
+                <HBox.margin>
+                    <Insets right="10.0"/>
+                </HBox.margin>
+            </Label>
+            <TextField fx:id="teacherField" minWidth="250.0"/>
+        </HBox>
+        <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить"/>
+        <ListView fx:id="listView" prefWidth="400.0">
+        </ListView>
+        <Button mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить"/>
+    </VBox>
 </AnchorPane>

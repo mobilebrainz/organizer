@@ -1,6 +1,7 @@
 package com.khodko.organizer;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.khodko.organizer.model.Pair;
 
@@ -49,7 +50,14 @@ public class WeekSchedule {
     }
 
     public void read() {
-
+        try {
+            File file = new File(WEEK_SCHEDULE_DIR);
+            if (file.exists()) {
+                weekSchedule = objectMapper.readValue(file, new TypeReference<Map<String, Map<Integer, List<Pair>>>>() {});
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void write() {
@@ -60,11 +68,8 @@ public class WeekSchedule {
         }
     }
 
-    public Map<String, Map<Integer, List<Pair>>> getWeekSchedule() {
+    public Map<String, Map<Integer, List<Pair>>> get() {
         return weekSchedule;
     }
 
-    public void setWeekSchedule(Map<String, Map<Integer, List<Pair>>> weekSchedule) {
-        this.weekSchedule = weekSchedule;
-    }
 }

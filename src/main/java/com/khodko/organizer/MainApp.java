@@ -30,7 +30,7 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Organizer");
         initRootLayout();
 
-        //weekSchedule.write();
+        weekSchedule.read();
 
         showDaySchedule();
     }

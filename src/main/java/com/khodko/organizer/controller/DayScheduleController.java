@@ -1,5 +1,6 @@
 package com.khodko.organizer.controller;
 
+import com.khodko.organizer.DateUtil;
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.StaticStorage;
 import com.khodko.organizer.model.Pair;
@@ -11,7 +12,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -41,11 +41,7 @@ public class DayScheduleController {
     }
 
     public void showDate(LocalDate date) {
-        int dayOfWeek = date.getDayOfWeek().ordinal();
-        String[] weekDays = {"понедельник", "вторник", "среда", "четверг", "пятница",
-                "суббота", "воскресенье"};
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataString = dtf.format(date) + " " + weekDays[dayOfWeek];
+        String dataString = DateUtil.getDateString(date);
         dataLabel.setText(dataString);
     }
 

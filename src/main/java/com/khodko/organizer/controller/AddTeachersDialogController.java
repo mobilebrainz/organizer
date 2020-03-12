@@ -20,12 +20,13 @@ public class AddTeachersDialogController {
     private ListView<String> listView;
 
     private MainApp mainApp;
+    private List<String> teachers;
     private ObservableList<String> observableTeachers = FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        List<String> lessonsList = mainApp.getTeachersLoader().getTeachers();
-        observableTeachers.addAll(lessonsList);
+        teachers = mainApp.getTeachersStorage().getTeachers();
+        observableTeachers.addAll(teachers);
         listView.setItems(observableTeachers);
     }
 
@@ -33,8 +34,8 @@ public class AddTeachersDialogController {
     public void onAddBtn() {
         String teacher = teacherField.getText().trim();
         if (!teacher.isEmpty() && !observableTeachers.contains(teacher)) {
-            mainApp.getTeachersLoader().getTeachers().add(teacher);
-            mainApp.getTeachersLoader().write();
+            teachers.add(teacher);
+            mainApp.getTeachersStorage().write();
             observableTeachers.add(teacher);
         }
         teacherField.setText("");
@@ -43,8 +44,8 @@ public class AddTeachersDialogController {
     @FXML
     public void onDeleteBtn() {
         ObservableList<String> selectedTeachers = listView.getSelectionModel().getSelectedItems();
-        mainApp.getTeachersLoader().getTeachers().removeAll(selectedTeachers);
-        mainApp.getTeachersLoader().write();
+        teachers.removeAll(selectedTeachers);
+        mainApp.getTeachersStorage().write();
         observableTeachers.removeAll(selectedTeachers);
     }
 

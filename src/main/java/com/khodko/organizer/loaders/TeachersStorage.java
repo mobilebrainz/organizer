@@ -11,14 +11,14 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class TeachersLoader {
+public class TeachersStorage {
 
     private final String TEACHERS_DIR = "src/main/resources/files/teachers.json";
 
     private List<String> teachers = new ArrayList<>();
     private ObjectMapper objectMapper;
 
-    public TeachersLoader() {
+    public TeachersStorage() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
     }

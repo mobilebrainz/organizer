@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class WeekScheduleLoader {
+public class WeekScheduleStorage {
 
     private final String WEEK_SCHEDULE_DIR = "src/main/resources/files/week-schedule.json";
 
@@ -21,30 +21,30 @@ public class WeekScheduleLoader {
         "monday" : {
             "2" : {
                 "teacher" : "Иванов Ф.А.",
-                        "lesson" : "Физика",
-                        "pairType" : "ЛБ",
-                        "cabinet" : "414-1"
-            }
+                "lesson" : "Физика",
+                "pairType" : "ЛБ",
+                "cabinet" : "414-1"
+            },
             "3" : {
                 "teacher" : "Иванов Ф.А.",
-                        "lesson" : "Физика",
-                        "pairType" : "ЛБ",
-                        "cabinet" : "414-1"
-            }
+                "lesson" : "Физика",
+                "pairType" : "ЛБ",
+                "cabinet" : "414-1"
+            },
             "5" : {
                 "teacher" : "Иванов Ф.А.",
-                        "lesson" : "Физика",
-                        "pairType" : "ЛБ",
-                        "cabinet" : "414-1"
+                "lesson" : "Физика",
+                "pairType" : "ЛБ",
+                "cabinet" : "414-1"
                 }
             },
             ...
      }
      */
-    private Map<String, Map<Integer, List<Pair>>> weekSchedule = new HashMap<>();
+    private Map<String, Map<Integer, Pair>> weekSchedule = new HashMap<>();
     private ObjectMapper objectMapper;
 
-    public WeekScheduleLoader() {
+    public WeekScheduleStorage() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
     }
@@ -53,7 +53,7 @@ public class WeekScheduleLoader {
         try {
             File file = new File(WEEK_SCHEDULE_DIR);
             if (file.exists()) {
-                weekSchedule = objectMapper.readValue(file, new TypeReference<Map<String, Map<Integer, List<Pair>>>>() {
+                weekSchedule = objectMapper.readValue(file, new TypeReference<Map<String, Map<Integer, Pair>>>() {
                 });
             }
         } catch (IOException e) {
@@ -69,7 +69,7 @@ public class WeekScheduleLoader {
         }
     }
 
-    public Map<String, Map<Integer, List<Pair>>> get() {
+    public Map<String, Map<Integer, Pair>> getWeekSchedule() {
         return weekSchedule;
     }
 

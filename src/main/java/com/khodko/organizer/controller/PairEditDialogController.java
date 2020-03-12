@@ -3,6 +3,7 @@ package com.khodko.organizer.controller;
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.StaticStorage;
 import com.khodko.organizer.model.Pair;
+import com.khodko.organizer.utils.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 
 public class PairEditDialogController {
@@ -41,14 +43,26 @@ public class PairEditDialogController {
     private Pair pair;
     private Integer numPair;
 
+    private Map<String, Map<Integer, Pair>> weekSchedule;
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    // todo: достаточно передавать numPair. Еслт новая пара создаётся тогда numPair = null
     public void init(MainApp mainApp, Pair pair, Integer numPair) {
         this.mainApp = mainApp;
         this.pair = pair;
         this.numPair = numPair;
+
+        // todo:
+        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
+        String weekDay = DateUtil.getWeekDay(mainApp.getDate());
+        if (numPair != null) {
+            // todo: check on null get(weekDay)
+            //this.pair = weekSchedule.get(weekDay).get(numPair);
+        }
+
         initLessonsChoiceBox();
         initTypesChoiceBox();
         initTeachersChoiceBox();
@@ -56,7 +70,7 @@ public class PairEditDialogController {
     }
 
     private void initLessonsChoiceBox() {
-        List<String> lessonsList = mainApp.getLessonsLoader().getLessons();
+        List<String> lessonsList = mainApp.getLessonsStorage().getLessons();
         ObservableList<String> lessons = FXCollections.observableArrayList();
         lessons.addAll(lessonsList);
         lessonsChoiceBox.setItems(lessons);
@@ -71,7 +85,7 @@ public class PairEditDialogController {
     }
 
     private void initTeachersChoiceBox() {
-        List<String> teachersList = mainApp.getTeachersLoader().getTeachers();
+        List<String> teachersList = mainApp.getTeachersStorage().getTeachers();
         ObservableList<String> teachers = FXCollections.observableArrayList();
         teachers.addAll(teachersList);
         teachersChoiceBox.setItems(teachers);

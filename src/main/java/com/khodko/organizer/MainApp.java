@@ -1,9 +1,9 @@
 package com.khodko.organizer;
 
 import com.khodko.organizer.controller.*;
-import com.khodko.organizer.loaders.LessonsLoader;
-import com.khodko.organizer.loaders.TeachersLoader;
-import com.khodko.organizer.loaders.WeekScheduleLoader;
+import com.khodko.organizer.loaders.LessonsStorage;
+import com.khodko.organizer.loaders.TeachersStorage;
+import com.khodko.organizer.loaders.WeekScheduleStorage;
 import com.khodko.organizer.model.Pair;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +22,9 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private LocalDate date = LocalDate.now();
-    private WeekScheduleLoader weekScheduleLoader = new WeekScheduleLoader();
-    private LessonsLoader lessonsLoader = new LessonsLoader();
-    private TeachersLoader teachersLoader = new TeachersLoader();
+    private WeekScheduleStorage weekScheduleStorage = new WeekScheduleStorage();
+    private LessonsStorage lessonsStorage = new LessonsStorage();
+    private TeachersStorage teachersStorage = new TeachersStorage();
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,9 +32,9 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Organizer");
         initRootLayout();
 
-        weekScheduleLoader.read();
-        lessonsLoader.read();
-        teachersLoader.read();
+        weekScheduleStorage.read();
+        lessonsStorage.read();
+        teachersStorage.read();
 
         showDaySchedule();
     }
@@ -161,16 +161,16 @@ public class MainApp extends Application {
         this.date = date;
     }
 
-    public WeekScheduleLoader getWeekScheduleLoader() {
-        return weekScheduleLoader;
+    public WeekScheduleStorage getWeekScheduleStorage() {
+        return weekScheduleStorage;
     }
 
-    public LessonsLoader getLessonsLoader() {
-        return lessonsLoader;
+    public LessonsStorage getLessonsStorage() {
+        return lessonsStorage;
     }
 
-    public TeachersLoader getTeachersLoader() {
-        return teachersLoader;
+    public TeachersStorage getTeachersStorage() {
+        return teachersStorage;
     }
 
     public static void main(String[] args) {

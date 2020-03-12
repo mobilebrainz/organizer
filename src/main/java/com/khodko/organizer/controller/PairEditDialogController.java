@@ -56,8 +56,7 @@ public class PairEditDialogController {
     }
 
     private void initLessonsChoiceBox() {
-        // todo: take from mainApp field lessons
-        List<String> lessonsList = StaticStorage.loadLessons();
+        List<String> lessonsList = mainApp.getLessonsLoader().getLessons();
         ObservableList<String> lessons = FXCollections.observableArrayList();
         lessons.addAll(lessonsList);
         lessonsChoiceBox.setItems(lessons);
@@ -72,8 +71,7 @@ public class PairEditDialogController {
     }
 
     private void initTeachersChoiceBox() {
-        // todo: take from mainApp field teachers
-        List<String> teachersList = StaticStorage.loadTeachers();
+        List<String> teachersList = mainApp.getTeachersLoader().getTeachers();
         ObservableList<String> teachers = FXCollections.observableArrayList();
         teachers.addAll(teachersList);
         teachersChoiceBox.setItems(teachers);

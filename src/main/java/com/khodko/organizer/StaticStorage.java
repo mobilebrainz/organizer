@@ -56,30 +56,4 @@ public class StaticStorage {
         types.add("Лекция");
     }
 
-    public static List<String> lessons = new ArrayList<>();
-
-    static {
-        lessons.add("Физика");
-        lessons.add("Математика");
-        lessons.add("Логика");
-        lessons.add("История");
-    }
-
-    public static List<String> teachers = new ArrayList<>();
-
-    static {
-        teachers.add("Иванов Ф.А.");
-        teachers.add("Сидоров С.К.");
-        teachers.add("Петров С.У.");
-        teachers.add("Воробьёв А.Ф.");
-    }
-
-    public static List<String> loadLessons() {
-        return lessons;
-    }
-
-    public static List<String> loadTeachers() {
-        return teachers;
-    }
-
 }

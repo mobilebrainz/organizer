@@ -50,7 +50,7 @@ public class PairController {
     @FXML
     public void onEditPairBtn() {
         if (pair != null) {
-            mainApp.showPairEditDialog(pair, numPair);
+            mainApp.showPairEditDialog(numPair);
         }
     }
 

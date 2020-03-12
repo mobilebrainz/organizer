@@ -1,4 +1,4 @@
-package com.khodko.organizer.loaders;
+package com.khodko.organizer.storage;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,7 +8,6 @@ import com.khodko.organizer.model.Pair;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 

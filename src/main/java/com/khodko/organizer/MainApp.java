@@ -1,9 +1,10 @@
 package com.khodko.organizer;
 
 import com.khodko.organizer.controller.*;
-import com.khodko.organizer.loaders.LessonsStorage;
-import com.khodko.organizer.loaders.TeachersStorage;
-import com.khodko.organizer.loaders.WeekScheduleStorage;
+import com.khodko.organizer.storage.LessonsStorage;
+import com.khodko.organizer.storage.StaticStorage;
+import com.khodko.organizer.storage.TeachersStorage;
+import com.khodko.organizer.storage.WeekScheduleStorage;
 import com.khodko.organizer.model.Pair;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -70,21 +71,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void savePair(Integer numPair, Pair pair) {
-        // todo: save schedule in file
-        StaticStorage.pairs.put(numPair, pair);
-
-        showDaySchedule();
-    }
-
-    public void deletePair(Integer numPair) {
-        // todo: delete from memory and save schedule in file
-        StaticStorage.pairs.remove(numPair);
-
-        showDaySchedule();
-    }
-
-    public void showPairEditDialog(Pair pair, Integer numPair) {
+    public void showPairEditDialog(Integer numPair) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/PairEditDialog.fxml"));
@@ -99,9 +86,11 @@ public class MainApp extends Application {
 
             PairEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.init(this, pair, numPair);
+            controller.init(this, numPair);
 
             dialogStage.showAndWait();
+
+            showDaySchedule();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,7 +124,6 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("/fxml/AddTeachersDialog.fxml"));
             AnchorPane page = loader.load();
 
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавить преподавателей");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -146,7 +134,6 @@ public class MainApp extends Application {
             AddTeachersDialogController controller = loader.getController();
             controller.setMainApp(this);
 
-            // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

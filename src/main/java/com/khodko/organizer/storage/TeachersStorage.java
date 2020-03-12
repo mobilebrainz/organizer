@@ -1,9 +1,8 @@
-package com.khodko.organizer.loaders;
+package com.khodko.organizer.storage;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.khodko.organizer.StaticStorage;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,23 +11,23 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class LessonsStorage {
+public class TeachersStorage {
 
-    private final String LESSONS_DIR = "src/main/resources/files/lessons.json";
+    private final String TEACHERS_DIR = "src/main/resources/files/teachers.json";
 
-    private List<String> lessons = new ArrayList<>();
+    private List<String> teachers = new ArrayList<>();
     private ObjectMapper objectMapper;
 
-    public LessonsStorage() {
+    public TeachersStorage() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
     }
 
     public void read() {
         try {
-            File file = new File(LESSONS_DIR);
+            File file = new File(TEACHERS_DIR);
             if (file.exists()) {
-                lessons = objectMapper.readValue(file, new TypeReference<List<String>>() {
+                teachers = objectMapper.readValue(file, new TypeReference<List<String>>() {
                 });
             }
         } catch (IOException e) {
@@ -38,15 +37,15 @@ public class LessonsStorage {
 
     public void write() {
         try {
-            Collections.sort(lessons);
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(LESSONS_DIR), lessons);
+            Collections.sort(teachers);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(TEACHERS_DIR), teachers);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public List<String> getLessons() {
-        return lessons;
+    public List<String> getTeachers() {
+        return teachers;
     }
 
 }

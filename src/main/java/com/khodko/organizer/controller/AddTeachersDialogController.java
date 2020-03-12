@@ -1,14 +1,13 @@
 package com.khodko.organizer.controller;
 
 
-import com.khodko.organizer.StaticStorage;
+import com.khodko.organizer.MainApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -20,26 +19,23 @@ public class AddTeachersDialogController {
     @FXML
     private ListView<String> listView;
 
-    private ObservableList<String> teachers = FXCollections.observableArrayList();
+    private MainApp mainApp;
+    private ObservableList<String> observableTeachers = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize() {
-        // todo: take from mainApp field teachers
-        List<String> teachersList = StaticStorage.loadTeachers();
-        teachers.addAll(teachersList);
-        listView.setItems(teachers);
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        List<String> lessonsList = mainApp.getTeachersLoader().getTeachers();
+        observableTeachers.addAll(lessonsList);
+        listView.setItems(observableTeachers);
     }
 
     @FXML
     public void onAddBtn() {
         String teacher = teacherField.getText().trim();
-        if (!teacher.isEmpty() && !teachers.contains(teacher)) {
-            saveTeacher(teacher);
-            teachers.add(teacher);
+        if (!teacher.isEmpty() && !observableTeachers.contains(teacher)) {
+            mainApp.getTeachersLoader().getTeachers().add(teacher);
+            mainApp.getTeachersLoader().write();
+            observableTeachers.add(teacher);
         }
         teacherField.setText("");
     }
@@ -47,18 +43,9 @@ public class AddTeachersDialogController {
     @FXML
     public void onDeleteBtn() {
         ObservableList<String> selectedTeachers = listView.getSelectionModel().getSelectedItems();
-        removeTeachers(selectedTeachers);
-        teachers.removeAll(selectedTeachers);
-    }
-
-    private void saveTeacher(String lesson) {
-        StaticStorage.teachers.add(lesson);
-        // todo: перед сохранением предметов в файле - сортировать их
-        Collections.sort(StaticStorage.teachers);
-    }
-
-    private void removeTeachers(List<String> teachers) {
-        StaticStorage.teachers.removeAll(teachers);
+        mainApp.getTeachersLoader().getTeachers().removeAll(selectedTeachers);
+        mainApp.getTeachersLoader().write();
+        observableTeachers.removeAll(selectedTeachers);
     }
 
 }

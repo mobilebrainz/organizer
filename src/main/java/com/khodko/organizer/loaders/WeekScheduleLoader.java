@@ -1,4 +1,4 @@
-package com.khodko.organizer;
+package com.khodko.organizer.loaders;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class WeekSchedule {
+public class WeekScheduleLoader {
 
     private final String WEEK_SCHEDULE_DIR = "src/main/resources/files/week-schedule.json";
 
@@ -44,7 +44,7 @@ public class WeekSchedule {
     private Map<String, Map<Integer, List<Pair>>> weekSchedule = new HashMap<>();
     private ObjectMapper objectMapper;
 
-    public WeekSchedule() {
+    public WeekScheduleLoader() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
     }
@@ -53,7 +53,8 @@ public class WeekSchedule {
         try {
             File file = new File(WEEK_SCHEDULE_DIR);
             if (file.exists()) {
-                weekSchedule = objectMapper.readValue(file, new TypeReference<Map<String, Map<Integer, List<Pair>>>>() {});
+                weekSchedule = objectMapper.readValue(file, new TypeReference<Map<String, Map<Integer, List<Pair>>>>() {
+                });
             }
         } catch (IOException e) {
             e.printStackTrace();

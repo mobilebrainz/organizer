@@ -1,14 +1,13 @@
 package com.khodko.organizer.controller;
 
 
-import com.khodko.organizer.StaticStorage;
+import com.khodko.organizer.MainApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -20,26 +19,23 @@ public class AddLessonsDialogController {
     @FXML
     private ListView<String> listView;
 
-    private ObservableList<String> lessons = FXCollections.observableArrayList();
+    private MainApp mainApp;
+    private ObservableList<String> observableLessons = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize() {
-        // todo: take from mainApp field lessons
-        List<String> lessonsList = StaticStorage.loadLessons();;
-        lessons.addAll(lessonsList);
-        listView.setItems(lessons);
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        List<String> lessonsList = mainApp.getLessonsLoader().getLessons();
+        observableLessons.addAll(lessonsList);
+        listView.setItems(observableLessons);
     }
 
     @FXML
     public void onAddBtn() {
         String lesson = lessonField.getText().trim();
-        if (!lesson.isEmpty() && !lessons.contains(lesson)) {
-            saveLesson(lesson);
-            lessons.add(lesson);
+        if (!lesson.isEmpty() && !observableLessons.contains(lesson)) {
+            mainApp.getLessonsLoader().getLessons().add(lesson);
+            mainApp.getLessonsLoader().write();
+            observableLessons.add(lesson);
         }
         lessonField.setText("");
     }
@@ -47,17 +43,9 @@ public class AddLessonsDialogController {
     @FXML
     public void onDeleteBtn() {
         ObservableList<String> selectedLessons = listView.getSelectionModel().getSelectedItems();
-        removeLessons(selectedLessons);
-        lessons.removeAll(selectedLessons);
+        mainApp.getLessonsLoader().getLessons().removeAll(selectedLessons);
+        mainApp.getLessonsLoader().write();
+        observableLessons.removeAll(selectedLessons);
     }
 
-    private void saveLesson(String lesson) {
-        StaticStorage.lessons.add(lesson);
-        // todo: перед сохранением предметов в файле - сортировать их
-        Collections.sort(StaticStorage.lessons);
-    }
-
-    private void removeLessons(List<String> lessons) {
-        StaticStorage.lessons.removeAll(lessons);
-    }
 }

@@ -1,8 +1,9 @@
 package com.khodko.organizer;
 
-import com.khodko.organizer.controller.DayScheduleController;
-import com.khodko.organizer.controller.PairEditDialogController;
-import com.khodko.organizer.controller.RootController;
+import com.khodko.organizer.controller.*;
+import com.khodko.organizer.loaders.LessonsLoader;
+import com.khodko.organizer.loaders.TeachersLoader;
+import com.khodko.organizer.loaders.WeekScheduleLoader;
 import com.khodko.organizer.model.Pair;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 public class MainApp extends Application {
@@ -22,7 +22,9 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private LocalDate date = LocalDate.now();
-    private WeekSchedule weekSchedule = new WeekSchedule();
+    private WeekScheduleLoader weekScheduleLoader = new WeekScheduleLoader();
+    private LessonsLoader lessonsLoader = new LessonsLoader();
+    private TeachersLoader teachersLoader = new TeachersLoader();
 
     @Override
     public void start(Stage primaryStage) {
@@ -30,7 +32,9 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Organizer");
         initRootLayout();
 
-        weekSchedule.read();
+        weekScheduleLoader.read();
+        lessonsLoader.read();
+        teachersLoader.read();
 
         showDaySchedule();
     }
@@ -86,7 +90,6 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("/fxml/PairEditDialog.fxml"));
             AnchorPane page = loader.load();
 
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Редактировать пары");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -98,7 +101,6 @@ public class MainApp extends Application {
             controller.setDialogStage(dialogStage);
             controller.init(this, pair, numPair);
 
-            // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,7 +113,6 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("/fxml/AddLessonsDialog.fxml"));
             AnchorPane page = loader.load();
 
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавить предметы");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -119,7 +120,9 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Show the dialog and wait until the user closes it
+            AddLessonsDialogController controller = loader.getController();
+            controller.setMainApp(this);
+
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,6 +143,9 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            AddTeachersDialogController controller = loader.getController();
+            controller.setMainApp(this);
+
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
         } catch (IOException e) {
@@ -153,6 +159,18 @@ public class MainApp extends Application {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public WeekScheduleLoader getWeekScheduleLoader() {
+        return weekScheduleLoader;
+    }
+
+    public LessonsLoader getLessonsLoader() {
+        return lessonsLoader;
+    }
+
+    public TeachersLoader getTeachersLoader() {
+        return teachersLoader;
     }
 
     public static void main(String[] args) {

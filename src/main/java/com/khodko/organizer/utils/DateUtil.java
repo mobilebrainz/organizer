@@ -1,4 +1,4 @@
-package com.khodko.organizer;
+package com.khodko.organizer.utils;
 
 
 import java.time.LocalDate;

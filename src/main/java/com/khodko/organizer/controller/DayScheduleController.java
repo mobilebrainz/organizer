@@ -1,6 +1,6 @@
 package com.khodko.organizer.controller;
 
-import com.khodko.organizer.DateUtil;
+import com.khodko.organizer.utils.DateUtil;
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.StaticStorage;
 import com.khodko.organizer.model.Pair;

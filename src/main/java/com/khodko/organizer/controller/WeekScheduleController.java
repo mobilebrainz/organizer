@@ -10,11 +10,10 @@ import java.util.List;
 public class WeekScheduleController {
 
     private MainApp mainApp;
-    private List<Pair> pairs;
 
-    public void init(MainApp mainApp, List<Pair> pairs) {
+    public void init(MainApp mainApp, String lesson) {
         this.mainApp = mainApp;
-        this.pairs = pairs;
+
     }
 
     @FXML

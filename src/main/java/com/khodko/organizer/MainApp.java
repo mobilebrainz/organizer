@@ -1,10 +1,19 @@
 package com.khodko.organizer;
 
-import com.khodko.organizer.controller.*;
+import com.khodko.organizer.controller.AddLessonsDialogController;
+import com.khodko.organizer.controller.AddTeachersDialogController;
+import com.khodko.organizer.controller.DayScheduleController;
+import com.khodko.organizer.controller.PairEditDialogController;
+import com.khodko.organizer.controller.RootController;
+import com.khodko.organizer.controller.WeekScheduleController;
 import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.storage.LessonsStorage;
 import com.khodko.organizer.storage.TeachersStorage;
 import com.khodko.organizer.storage.WeekScheduleStorage;
+
+import java.io.IOException;
+import java.time.LocalDate;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,10 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
 
 public class MainApp extends Application {
@@ -71,7 +76,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void showWeekSchedule(List<Pair> weekPairs) {
+    public void showWeekSchedule(String lesson) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/WeekScheduleLayout.fxml"));
@@ -79,7 +84,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(daySchedule);
             WeekScheduleController controller = loader.getController();
-            controller.init(this, weekPairs);
+            controller.init(this, lesson);
 
         } catch (IOException e) {
             e.printStackTrace();

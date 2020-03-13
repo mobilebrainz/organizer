@@ -35,13 +35,11 @@ public class RootController {
         lessonsChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        List<Pair> weekPairs;
                         if (newValue.equals(allLessonsItem)) {
-                            weekPairs = mainApp.getWeekScheduleStorage().getWeekSchedule();
+                            mainApp.showWeekSchedule(null);
                         } else {
-                            weekPairs = mainApp.getWeekScheduleStorage().getScheduleByLesson(newValue);
+                            mainApp.showWeekSchedule(newValue);
                         }
-                        mainApp.showWeekSchedule(weekPairs);
                     }
                 }
         );

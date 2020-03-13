@@ -1,22 +1,43 @@
-[ {
-  "weekDay" : 4,
+[ [ {
   "num" : 1,
-  "teacher" : "Иванов Ф.А.",
-  "lesson" : "Математика",
-  "pairType" : "ЛБ",
-  "cabinet" : "342"
-}, {
-  "weekDay" : 4,
-  "num" : 2,
-  "teacher" : "Никитин А.Л.",
-  "lesson" : "Физика",
-  "pairType" : "ЛБ",
-  "cabinet" : "342"
-}, {
-  "weekDay" : 3,
-  "num" : 3,
   "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "Математика",
+  "lesson" : "История",
   "pairType" : "ЛБ",
-  "cabinet" : "334"
-} ]
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : "123"
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ] ]

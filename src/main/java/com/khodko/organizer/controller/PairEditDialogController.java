@@ -42,7 +42,6 @@ public class PairEditDialogController {
     private Pair pair;
 
     private List<Pair> weekSchedule;
-    private Integer weekDay;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -52,8 +51,8 @@ public class PairEditDialogController {
         this.mainApp = mainApp;
         this.pair = pair;
 
-        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
-        weekDay = mainApp.getDate().getDayOfWeek().ordinal();
+        Integer weekDay = mainApp.getDate().getDayOfWeek().ordinal();
+        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
 
         initLessonsChoiceBox();
         initTypesChoiceBox();
@@ -93,7 +92,6 @@ public class PairEditDialogController {
             cabinetField.setText(pair.getCabinet());
         } else {
             pair = new Pair();
-            pair.setWeekDay(weekDay);
             deleteButton.setVisible(false);
             numPairSpinner.getValueFactory().setValue(1);
             lessonsChoiceBox.getSelectionModel().selectFirst();
@@ -122,13 +120,22 @@ public class PairEditDialogController {
         
         // Удалить пару с тем же номером и неделй, что добавляется.
         // Это обеспечит уникальность пары в расписании
-        weekSchedule.remove(mainApp.getWeekScheduleStorage().getPair(weekDay, num));
+        weekSchedule.remove(getPair(num));
 
         pair.setNum(num);
         weekSchedule.add(pair);
         mainApp.getWeekScheduleStorage().write();
 
         dialogStage.close();
+    }
+
+    public Pair getPair(Integer num) {
+        for (Pair pair : weekSchedule) {
+            if (pair.getNum().equals(num)) {
+                return pair;
+            }
+        }
+        return null;
     }
 
     @FXML

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TeachersStorage {
 
-    private final String TEACHERS_DIR = "src/main/resources/files/teachers.json";
+    private final String TEACHERS_DIR = "src/main/resources/storage/teachers.json";
 
     private List<String> teachers = new ArrayList<>();
     private ObjectMapper objectMapper;

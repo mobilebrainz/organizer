@@ -1,8 +1,8 @@
 package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
-import com.khodko.organizer.storage.StaticStorage;
 import com.khodko.organizer.model.Pair;
+import com.khodko.organizer.storage.StaticStorage;
 import com.khodko.organizer.utils.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,9 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class PairEditDialogController {
@@ -42,25 +40,20 @@ public class PairEditDialogController {
     private MainApp mainApp;
     private Stage dialogStage;
     private Pair pair;
-    private Integer numPair;
 
-    private Map<String, Map<Integer, Pair>> weekSchedule;
-    private String weekDay;
+    private List<Pair> weekSchedule;
+    private Integer weekDay;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void init(MainApp mainApp, Integer numPair) {
+    public void init(MainApp mainApp, Pair pair) {
         this.mainApp = mainApp;
-        this.numPair = numPair;
+        this.pair = pair;
 
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
-        weekDay = DateUtil.getWeekDay(mainApp.getDate());
-        if (numPair != null) {
-            // todo: check on null get(weekDay)
-            this.pair = weekSchedule.get(weekDay).get(numPair);
-        }
+        weekDay = mainApp.getDate().getDayOfWeek().ordinal();
 
         initLessonsChoiceBox();
         initTypesChoiceBox();
@@ -93,13 +86,14 @@ public class PairEditDialogController {
     private void showDetails() {
         if (pair != null) {
             deleteButton.setVisible(true);
-            numPairSpinner.getValueFactory().setValue(numPair);
+            numPairSpinner.getValueFactory().setValue(pair.getNum());
             lessonsChoiceBox.getSelectionModel().select(pair.getLesson());
             typesChoiceBox.getSelectionModel().select(pair.getPairType());
             teachersChoiceBox.getSelectionModel().select(pair.getTeacher());
             cabinetField.setText(pair.getCabinet());
         } else {
             pair = new Pair();
+            pair.setWeekDay(weekDay);
             deleteButton.setVisible(false);
             numPairSpinner.getValueFactory().setValue(1);
             lessonsChoiceBox.getSelectionModel().selectFirst();
@@ -111,6 +105,8 @@ public class PairEditDialogController {
 
     @FXML
     public void onOkBtn() {
+        weekSchedule.remove(pair);
+
         String lesson = lessonsChoiceBox.getSelectionModel().getSelectedItem();
         pair.setLesson(lesson);
 
@@ -122,26 +118,23 @@ public class PairEditDialogController {
 
         pair.setCabinet(cabinetField.getText());
 
-        dialogStage.close();
+        int num = numPairSpinner.getValue();
+        
+        // Удалить пару с тем же номером и неделй, что добавляется.
+        // Это обеспечит уникальность пары в расписании
+        weekSchedule.remove(mainApp.getWeekScheduleStorage().getPair(weekDay, num));
 
-        Map<Integer, Pair> daySchedule = weekSchedule.get(weekDay);
-        if (daySchedule == null) {
-            daySchedule = new HashMap<>();
-            weekSchedule.put(weekDay, daySchedule);
-        }
-
-        daySchedule.remove(numPair);
-        numPair = numPairSpinner.getValue();
-        daySchedule.put(numPair, pair);
+        pair.setNum(num);
+        weekSchedule.add(pair);
         mainApp.getWeekScheduleStorage().write();
+
+        dialogStage.close();
     }
 
     @FXML
     public void onDeleteBtn() {
         dialogStage.close();
-
-        Map<Integer, Pair> daySchedule = weekSchedule.get(weekDay);
-        daySchedule.remove(numPair);
+        weekSchedule.remove(pair);
         mainApp.getWeekScheduleStorage().write();
     }
 

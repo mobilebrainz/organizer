@@ -117,7 +117,7 @@ public class PairEditDialogController {
         pair.setPairType(type);
 
         pair.setCabinet(cabinetField.getText());
-        
+
         int num = numPairSpinner.getValue();
         // удалить пару с тем же номером, что добавляется
         weekSchedule.remove(getPair(weekDay, num));

@@ -71,6 +71,21 @@ public class MainApp extends Application {
         }
     }
 
+    public void showWeekSchedule() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/fxml/WeekScheduleLayout.fxml"));
+            AnchorPane daySchedule = loader.load();
+
+            rootLayout.setCenter(daySchedule);
+            WeekScheduleController controller = loader.getController();
+            controller.init(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showPairEditDialog(Pair pair) {
         try {
             FXMLLoader loader = new FXMLLoader();

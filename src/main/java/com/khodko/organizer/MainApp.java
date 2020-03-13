@@ -1,11 +1,10 @@
 package com.khodko.organizer;
 
 import com.khodko.organizer.controller.*;
+import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.storage.LessonsStorage;
-import com.khodko.organizer.storage.StaticStorage;
 import com.khodko.organizer.storage.TeachersStorage;
 import com.khodko.organizer.storage.WeekScheduleStorage;
-import com.khodko.organizer.model.Pair;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -80,7 +79,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(daySchedule);
             WeekScheduleController controller = loader.getController();
-            controller.init(this);
+            controller.init(this, weekPairs);
 
         } catch (IOException e) {
             e.printStackTrace();

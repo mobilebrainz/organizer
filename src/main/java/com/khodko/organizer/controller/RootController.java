@@ -61,15 +61,12 @@ public class RootController {
         datePicker.setVisible(false);
         lessonsChoiceBox.setVisible(true);
 
-        initLessonsChoiceBox();
-        lessonsChoiceBox.getSelectionModel().selectFirst();
-    }
-
-    private void initLessonsChoiceBox() {
         ObservableList<String> observableLessons = FXCollections.observableArrayList();
         observableLessons.add(allLessonsItem);
         observableLessons.addAll(mainApp.getWeekScheduleStorage().getScheduleLessons());
         lessonsChoiceBox.setItems(observableLessons);
+        // вызывает слушателя на lessonsChoiceBox (см. в initialize())
+        lessonsChoiceBox.getSelectionModel().selectFirst();
     }
 
     @FXML

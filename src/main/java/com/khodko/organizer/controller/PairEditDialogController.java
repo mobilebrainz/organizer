@@ -119,7 +119,9 @@ public class PairEditDialogController {
         pair.setCabinet(cabinetField.getText());
 
         int num = numPairSpinner.getValue();
-        // удалить пару с тем же номером, что добавляется
+        
+        // Удалить пару с тем же номером и неделй, что добавляется.
+        // Это обеспечит уникальность пары в расписании
         weekSchedule.remove(mainApp.getWeekScheduleStorage().getPair(weekDay, num));
 
         pair.setNum(num);

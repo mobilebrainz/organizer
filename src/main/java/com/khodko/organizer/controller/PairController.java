@@ -2,6 +2,7 @@ package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

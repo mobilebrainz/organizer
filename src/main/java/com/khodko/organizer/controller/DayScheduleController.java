@@ -3,17 +3,15 @@ package com.khodko.organizer.controller;
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.utils.DateUtil;
+
+import java.io.IOException;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 
 public class DayScheduleController {

@@ -2,7 +2,6 @@ package com.khodko.organizer.controller;
 
 
 import com.khodko.organizer.MainApp;
-import com.khodko.organizer.model.Pair;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
-import java.util.List;
 
 
 public class RootController {

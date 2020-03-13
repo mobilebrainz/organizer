@@ -3,7 +3,11 @@ package com.khodko.organizer.controller;
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.storage.StaticStorage;
-import com.khodko.organizer.utils.DateUtil;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,10 +16,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 
 public class PairEditDialogController {
@@ -118,7 +118,7 @@ public class PairEditDialogController {
         pair.setCabinet(cabinetField.getText());
 
         int num = numPairSpinner.getValue();
-        
+
         // Удалить пару с тем же номером, что добавляется. Это обеспечит уникальность пары в расписании
         weekSchedule.remove(getPair(num));
 

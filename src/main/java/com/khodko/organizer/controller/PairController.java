@@ -27,7 +27,7 @@ public class PairController {
     private MainApp mainApp;
     private Pair pair;
 
-    public void init(MainApp mainApp, Pair pair) {
+    public void setMainApp(MainApp mainApp, Pair pair) {
         this.mainApp = mainApp;
         this.pair = pair;
         showPairDetails();

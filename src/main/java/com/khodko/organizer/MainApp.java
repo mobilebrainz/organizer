@@ -69,7 +69,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(daySchedule);
             DayScheduleController controller = loader.getController();
-            controller.init(this);
+            controller.setMainApp(this);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,7 +84,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(daySchedule);
             WeekScheduleController controller = loader.getController();
-            controller.init(this, lesson);
+            controller.setMainApp(this, lesson);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -106,7 +106,7 @@ public class MainApp extends Application {
 
             PairEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.init(this, pair);
+            controller.setMainApp(this, pair);
 
             dialogStage.showAndWait();
 

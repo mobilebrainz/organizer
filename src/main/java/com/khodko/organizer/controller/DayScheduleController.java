@@ -24,7 +24,7 @@ public class DayScheduleController {
 
     private MainApp mainApp;
 
-    public void init(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
         showDate();
@@ -48,7 +48,7 @@ public class DayScheduleController {
                 pairVBox.getChildren().add(pairLayout);
 
                 PairController controller = loader.getController();
-                controller.init(mainApp, pair);
+                controller.setMainApp(mainApp, pair);
 
             } catch (IOException e) {
                 e.printStackTrace();

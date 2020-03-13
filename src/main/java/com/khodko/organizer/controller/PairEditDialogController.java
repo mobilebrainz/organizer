@@ -48,7 +48,7 @@ public class PairEditDialogController {
         this.dialogStage = dialogStage;
     }
 
-    public void init(MainApp mainApp, Pair pair) {
+    public void setMainApp(MainApp mainApp, Pair pair) {
         this.mainApp = mainApp;
         this.pair = pair;
 

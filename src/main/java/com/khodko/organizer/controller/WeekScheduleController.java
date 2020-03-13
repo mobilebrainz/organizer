@@ -9,7 +9,7 @@ public class WeekScheduleController {
 
     private MainApp mainApp;
 
-    public void init(MainApp mainApp, String lesson) {
+    public void setMainApp(MainApp mainApp, String lesson) {
         this.mainApp = mainApp;
 
     }

@@ -52,8 +52,8 @@ public class RootController {
         datePicker.setVisible(true);
         lessonsChoiceBox.setVisible(false);
 
-        // вызывает onDatePicker()
         datePicker.setValue(LocalDate.now());
+        onDatePicker();
     }
 
     @FXML

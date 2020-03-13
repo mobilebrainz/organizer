@@ -42,7 +42,7 @@ public class PairEditDialogController {
     private Pair pair;
 
     private List<Pair> weekSchedule;
-    private String weekDay;
+    private Integer weekDay;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -53,7 +53,7 @@ public class PairEditDialogController {
         this.pair = pair;
 
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
-        weekDay = DateUtil.getWeekDay(mainApp.getDate());
+        weekDay = mainApp.getDate().getDayOfWeek().ordinal();
 
         initLessonsChoiceBox();
         initTypesChoiceBox();

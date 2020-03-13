@@ -47,7 +47,7 @@ public class WeekScheduleStorage {
         return weekSchedule;
     }
 
-    public Pair getPair(String weekDay, Integer num) {
+    public Pair getPair(Integer weekDay, Integer num) {
         for (Pair pair : weekSchedule) {
             if (pair.getWeekDay().equals(weekDay) && pair.getNum().equals(num)) {
                 return pair;
@@ -56,7 +56,7 @@ public class WeekScheduleStorage {
         return null;
     }
 
-    public List<Pair> getDayPairs(String weekDay) {
+    public List<Pair> getDayPairs(Integer weekDay) {
         List<Pair> dayPairs = new ArrayList<>();
         for (Pair pair : weekSchedule) {
             if (pair.getWeekDay().equals(weekDay)) {

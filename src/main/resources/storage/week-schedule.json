@@ -1,22 +1,22 @@
 [ {
-  "weekDay" : "среда",
-  "num" : 2,
+  "weekDay" : 4,
+  "num" : 1,
   "teacher" : "Иванов Ф.А.",
-  "lesson" : "Логика",
-  "pairType" : "Лекция",
-  "cabinet" : "234"
-}, {
-  "weekDay" : "среда",
-  "num" : 3,
-  "teacher" : "Никитин А.Л.",
   "lesson" : "Математика",
   "pairType" : "ЛБ",
-  "cabinet" : "220"
+  "cabinet" : "342"
 }, {
-  "weekDay" : "пятница",
-  "num" : 1,
-  "teacher" : "Петров А.А.",
-  "lesson" : "Философия",
+  "weekDay" : 4,
+  "num" : 2,
+  "teacher" : "Никитин А.Л.",
+  "lesson" : "Физика",
   "pairType" : "ЛБ",
-  "cabinet" : "125"
+  "cabinet" : "342"
+}, {
+  "weekDay" : 3,
+  "num" : 3,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Математика",
+  "pairType" : "ЛБ",
+  "cabinet" : "334"
 } ]

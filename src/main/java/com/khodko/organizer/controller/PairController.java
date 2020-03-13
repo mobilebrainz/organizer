@@ -25,33 +25,24 @@ public class PairController {
 
     private MainApp mainApp;
     private Pair pair;
-    private Integer numPair;
 
-    public void init(MainApp mainApp, Pair pair, Integer numPair) {
+    public void init(MainApp mainApp, Pair pair) {
         this.mainApp = mainApp;
         this.pair = pair;
-        this.numPair = numPair;
         showPairDetails();
     }
 
-    /**
-     * Fills all text fields to show details about the pair.
-     */
     private void showPairDetails() {
-        if (pair != null) {
-            numPairLabel.setText(numPair.toString());
-            lessonLabel.setText(pair.getLesson());
-            teacherLabel.setText(pair.getTeacher());
-            typeLabel.setText(pair.getPairType());
-            cabinetLabel.setText(pair.getCabinet());
-        }
+        numPairLabel.setText(pair.getNum().toString());
+        lessonLabel.setText(pair.getLesson());
+        teacherLabel.setText(pair.getTeacher());
+        typeLabel.setText(pair.getPairType());
+        cabinetLabel.setText(pair.getCabinet());
     }
 
     @FXML
     public void onEditPairBtn() {
-        if (pair != null) {
-            mainApp.showPairEditDialog(numPair);
-        }
+        mainApp.showPairEditDialog(pair);
     }
 
 }

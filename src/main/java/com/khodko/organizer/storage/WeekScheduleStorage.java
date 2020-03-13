@@ -7,40 +7,15 @@ import com.khodko.organizer.model.Pair;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WeekScheduleStorage {
 
-    private final String WEEK_SCHEDULE_DIR = "src/main/resources/files/week-schedule.json";
+    private final String WEEK_SCHEDULE_DIR = "src/main/resources/storage/week-schedule.json";
 
-    /*
-    {
-        "monday" : {
-            "2" : {
-                "teacher" : "Иванов Ф.А.",
-                "lesson" : "Физика",
-                "pairType" : "ЛБ",
-                "cabinet" : "414-1"
-            },
-            "3" : {
-                "teacher" : "Иванов Ф.А.",
-                "lesson" : "Физика",
-                "pairType" : "ЛБ",
-                "cabinet" : "414-1"
-            },
-            "5" : {
-                "teacher" : "Иванов Ф.А.",
-                "lesson" : "Физика",
-                "pairType" : "ЛБ",
-                "cabinet" : "414-1"
-                }
-            },
-            ...
-     }
-     */
-    private Map<String, Map<Integer, Pair>> weekSchedule = new HashMap<>();
+    private List<Pair> weekSchedule = new ArrayList<>();
     private ObjectMapper objectMapper;
 
     public WeekScheduleStorage() {
@@ -52,7 +27,7 @@ public class WeekScheduleStorage {
         try {
             File file = new File(WEEK_SCHEDULE_DIR);
             if (file.exists()) {
-                weekSchedule = objectMapper.readValue(file, new TypeReference<Map<String, Map<Integer, Pair>>>() {
+                weekSchedule = objectMapper.readValue(file, new TypeReference<List<Pair>>() {
                 });
             }
         } catch (IOException e) {
@@ -68,7 +43,7 @@ public class WeekScheduleStorage {
         }
     }
 
-    public Map<String, Map<Integer, Pair>> getWeekSchedule() {
+    public List<Pair> getWeekSchedule() {
         return weekSchedule;
     }
 

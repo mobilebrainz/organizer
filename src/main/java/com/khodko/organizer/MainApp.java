@@ -71,7 +71,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void showPairEditDialog(Integer numPair) {
+    public void showPairEditDialog(Pair pair) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/PairEditDialog.fxml"));
@@ -86,7 +86,7 @@ public class MainApp extends Application {
 
             PairEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.init(this, numPair);
+            controller.init(this, pair);
 
             dialogStage.showAndWait();
 

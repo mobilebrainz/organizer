@@ -1,0 +1,15 @@
+[ {
+  "weekDay" : "пятница",
+  "num" : 1,
+  "teacher" : "1112",
+  "lesson" : "4eytr",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+}, {
+  "weekDay" : "пятница",
+  "num" : 3,
+  "teacher" : "1112",
+  "lesson" : "4eytr",
+  "pairType" : "ПР",
+  "cabinet" : ""
+} ]

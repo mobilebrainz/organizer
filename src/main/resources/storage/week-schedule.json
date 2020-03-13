@@ -38,13 +38,7 @@
   "num" : 3,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
-  "pairType" : "ЛБ",
-  "cabinet" : ""
-}, {
-  "num" : 4,
-  "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "История",
-  "pairType" : "ЛБ",
+  "pairType" : "Лекция",
   "cabinet" : ""
 }, {
   "num" : 5,

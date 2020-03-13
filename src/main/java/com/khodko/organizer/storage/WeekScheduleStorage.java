@@ -47,9 +47,6 @@ public class WeekScheduleStorage {
         return weekSchedule;
     }
 
-    public List<Pair> getDayPairs(Integer weekDay) {
-        return weekSchedule.get(weekDay);
-    }
 
     public List<String> getScheduleLessons() {
         List<String> lessons = new ArrayList<>();

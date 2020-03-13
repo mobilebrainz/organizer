@@ -39,11 +39,8 @@ public class DayScheduleController {
     }
 
     public void showPairs() {
-        Integer weekDay = mainApp.getDate().getDayOfWeek().ordinal();
-        List<Pair> dayPairs = mainApp.getWeekScheduleStorage().getDayPairs(weekDay);
-
-        // todo: сделать сортировку вручную
-        dayPairs.sort(Comparator.comparing(Pair::getNum));
+        int weekDay = mainApp.getDate().getDayOfWeek().ordinal();
+        List<Pair> dayPairs = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
 
         for (Pair pair : dayPairs) {
             try {

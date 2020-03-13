@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -51,7 +52,7 @@ public class PairEditDialogController {
         this.mainApp = mainApp;
         this.pair = pair;
 
-        Integer weekDay = mainApp.getDate().getDayOfWeek().ordinal();
+        int weekDay = mainApp.getDate().getDayOfWeek().ordinal();
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
 
         initLessonsChoiceBox();
@@ -118,12 +119,15 @@ public class PairEditDialogController {
 
         int num = numPairSpinner.getValue();
         
-        // Удалить пару с тем же номером и неделй, что добавляется.
-        // Это обеспечит уникальность пары в расписании
+        // Удалить пару с тем же номером, что добавляется. Это обеспечит уникальность пары в расписании
         weekSchedule.remove(getPair(num));
 
         pair.setNum(num);
         weekSchedule.add(pair);
+
+        // todo: сделать сортировку вручную
+        weekSchedule.sort(Comparator.comparing(Pair::getNum));
+
         mainApp.getWeekScheduleStorage().write();
 
         dialogStage.close();

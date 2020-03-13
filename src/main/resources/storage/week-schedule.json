@@ -25,9 +25,33 @@
 } ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Математика",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+}, {
+  "num" : 2,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Физика",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+}, {
+  "num" : 3,
+  "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "ЛБ",
-  "cabinet" : "123"
+  "cabinet" : ""
+}, {
+  "num" : 4,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+}, {
+  "num" : 5,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
 } ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",

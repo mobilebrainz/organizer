@@ -120,22 +120,13 @@ public class PairEditDialogController {
 
         int num = numPairSpinner.getValue();
         // удалить пару с тем же номером, что добавляется
-        weekSchedule.remove(getPair(weekDay, num));
+        weekSchedule.remove(mainApp.getWeekScheduleStorage().getPair(weekDay, num));
 
         pair.setNum(num);
         weekSchedule.add(pair);
         mainApp.getWeekScheduleStorage().write();
 
         dialogStage.close();
-    }
-
-    private Pair getPair(String weekDay, Integer num) {
-        for (Pair pair : weekSchedule) {
-            if (pair.getWeekDay().equals(weekDay) && pair.getNum().equals(num)) {
-                return pair;
-            }
-        }
-        return null;
     }
 
     @FXML

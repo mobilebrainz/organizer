@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class MainApp extends Application {
@@ -71,7 +72,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void showWeekSchedule() {
+    public void showWeekSchedule(List<Pair> weekPairs) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/WeekScheduleLayout.fxml"));

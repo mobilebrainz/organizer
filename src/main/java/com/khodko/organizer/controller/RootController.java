@@ -5,13 +5,11 @@ import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,7 +26,25 @@ public class RootController {
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        // вызывает onDatePicker()
         datePicker.setValue(mainApp.getDate());
+    }
+
+    @FXML
+    private void initialize() {
+        lessonsChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        List<Pair> weekPairs;
+                        if (newValue.equals(allLessonsItem)) {
+                            weekPairs = mainApp.getWeekScheduleStorage().getWeekSchedule();
+                        } else {
+                            weekPairs = mainApp.getWeekScheduleStorage().getScheduleByLesson(newValue);
+                        }
+                        mainApp.showWeekSchedule(weekPairs);
+                    }
+                }
+        );
     }
 
     @FXML
@@ -36,10 +52,8 @@ public class RootController {
         datePicker.setVisible(true);
         lessonsChoiceBox.setVisible(false);
 
-        LocalDate date = LocalDate.now();
-        datePicker.setValue(date);
-        mainApp.setDate(date);
-        mainApp.showDaySchedule();
+        // вызывает onDatePicker()
+        datePicker.setValue(LocalDate.now());
     }
 
     @FXML
@@ -47,7 +61,6 @@ public class RootController {
         datePicker.setVisible(false);
         lessonsChoiceBox.setVisible(true);
 
-        mainApp.showWeekSchedule();
         initLessonsChoiceBox();
         lessonsChoiceBox.getSelectionModel().selectFirst();
     }
@@ -55,18 +68,8 @@ public class RootController {
     private void initLessonsChoiceBox() {
         ObservableList<String> observableLessons = FXCollections.observableArrayList();
         observableLessons.add(allLessonsItem);
-        observableLessons.addAll(getWeekScheduleLessons());
+        observableLessons.addAll(mainApp.getWeekScheduleStorage().getScheduleLessons());
         lessonsChoiceBox.setItems(observableLessons);
-    }
-
-    private List<String> getWeekScheduleLessons() {
-        List<String> lessons = new ArrayList<>();
-        for (Pair pair : mainApp.getWeekScheduleStorage().getWeekSchedule()) {
-            if (!lessons.contains(pair.getLesson())) {
-                lessons.add(pair.getLesson());
-            }
-        }
-        return lessons;
     }
 
     @FXML
@@ -90,4 +93,5 @@ public class RootController {
         mainApp.setDate(date);
         mainApp.showDaySchedule();
     }
+
 }

@@ -40,7 +40,7 @@ public class DayScheduleController {
 
     public void showPairs() {
         String weekDay = DateUtil.getWeekDay(mainApp.getDate());
-        List<Pair> dayPairs = getDayPairs(weekDay);
+        List<Pair> dayPairs = mainApp.getWeekScheduleStorage().getDayPairs(weekDay);
 
         // todo: сделать сортировку вручную
         dayPairs.sort(Comparator.comparing(Pair::getNum));
@@ -59,17 +59,6 @@ public class DayScheduleController {
                 e.printStackTrace();
             }
         }
-    }
-
-    private List<Pair> getDayPairs(String weekDay) {
-        List<Pair> dayPairs = new ArrayList<>();
-        List<Pair> weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
-        for (Pair pair : weekSchedule) {
-            if (pair.getWeekDay().equals(weekDay)) {
-                dayPairs.add(pair);
-            }
-        }
-        return dayPairs;
     }
 
     @FXML

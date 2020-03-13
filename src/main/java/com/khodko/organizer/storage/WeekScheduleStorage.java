@@ -47,4 +47,43 @@ public class WeekScheduleStorage {
         return weekSchedule;
     }
 
+    public Pair getPair(String weekDay, Integer num) {
+        for (Pair pair : weekSchedule) {
+            if (pair.getWeekDay().equals(weekDay) && pair.getNum().equals(num)) {
+                return pair;
+            }
+        }
+        return null;
+    }
+
+    public List<Pair> getDayPairs(String weekDay) {
+        List<Pair> dayPairs = new ArrayList<>();
+        for (Pair pair : weekSchedule) {
+            if (pair.getWeekDay().equals(weekDay)) {
+                dayPairs.add(pair);
+            }
+        }
+        return dayPairs;
+    }
+
+    public List<String> getScheduleLessons() {
+        List<String> lessons = new ArrayList<>();
+        for (Pair pair : weekSchedule) {
+            if (!lessons.contains(pair.getLesson())) {
+                lessons.add(pair.getLesson());
+            }
+        }
+        return lessons;
+    }
+
+    public List<Pair> getScheduleByLesson(String lesson) {
+        List<Pair> pairs = new ArrayList<>();
+        for (Pair pair : weekSchedule) {
+            if (pair.getLesson().equals(lesson)) {
+                pairs.add(pair);
+            }
+        }
+        return pairs;
+    }
+
 }

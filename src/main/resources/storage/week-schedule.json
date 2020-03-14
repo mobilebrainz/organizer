@@ -47,11 +47,11 @@
   "pairType" : "ЛБ",
   "cabinet" : ""
 } ], [ {
-  "num" : 1,
-  "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "История",
+  "num" : 2,
+  "teacher" : "Сидоров Ф.О.",
+  "lesson" : "Философия",
   "pairType" : "ЛБ",
-  "cabinet" : ""
+  "cabinet" : "126"
 } ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",

@@ -21,7 +21,6 @@ public class AddLessonsDialogController {
     private ObservableList<String> lessons;
     private LessonsStorage lessonsStorage;
 
-
     public void setMainApp(MainApp mainApp) {
         lessonsStorage = mainApp.getLessonsStorage();
         lessons = lessonsStorage.getLessons();

@@ -62,25 +62,20 @@ public class PairEditDialogController {
     }
 
     private void initLessonsChoiceBox() {
-        List<String> lessons = mainApp.getLessonsStorage().getLessons();
-        ObservableList<String> observableLessons = FXCollections.observableArrayList();
-        observableLessons.addAll(lessons);
-        lessonsChoiceBox.setItems(observableLessons);
+        ObservableList<String> lessons = mainApp.getLessonsStorage().getLessons();
+        lessonsChoiceBox.setItems(lessons);
+    }
+
+    private void initTeachersChoiceBox() {
+        ObservableList<String> teachers = mainApp.getTeachersStorage().getTeachers();
+        teachersChoiceBox.setItems(teachers);
     }
 
     private void initTypesChoiceBox() {
         List<String> types = StaticStorage.types;
         Collections.sort(types);
-        ObservableList<String> observableTypes = FXCollections.observableArrayList();
-        observableTypes.addAll(types);
+        ObservableList<String> observableTypes = FXCollections.observableArrayList(types);
         typesChoiceBox.setItems(observableTypes);
-    }
-
-    private void initTeachersChoiceBox() {
-        List<String> teachers = mainApp.getTeachersStorage().getTeachers();
-        ObservableList<String> ObservableTeachers = FXCollections.observableArrayList();
-        ObservableTeachers.addAll(teachers);
-        teachersChoiceBox.setItems(ObservableTeachers);
     }
 
     private void showDetails() {

@@ -30,6 +30,7 @@ public class TeachersStorage {
         try {
             File file = new File(TEACHERS_DIR);
             if (file.exists()) {
+                teachers.clear();
                 teachers.addAll(objectMapper.readValue(file, new TypeReference<List<String>>() {
                 }));
             }

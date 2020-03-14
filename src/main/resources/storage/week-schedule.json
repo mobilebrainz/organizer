@@ -27,30 +27,30 @@
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "Математика",
   "pairType" : "ЛБ",
-  "cabinet" : ""
+  "cabinet" : "402"
 }, {
   "num" : 2,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "Физика",
   "pairType" : "ЛБ",
-  "cabinet" : ""
+  "cabinet" : "340"
 }, {
   "num" : 3,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "Лекция",
-  "cabinet" : ""
+  "cabinet" : "235"
 }, {
   "num" : 5,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "ЛБ",
-  "cabinet" : ""
+  "cabinet" : "365"
 } ], [ {
   "num" : 2,
   "teacher" : "Сидоров Ф.О.",
   "lesson" : "Философия",
-  "pairType" : "ЛБ",
+  "pairType" : "ПР",
   "cabinet" : "126"
 } ], [ {
   "num" : 1,

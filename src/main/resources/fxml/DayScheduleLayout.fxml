@@ -8,7 +8,11 @@
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.khodko.organizer.controller.DayScheduleController">
-    <VBox fx:id="pairVBox" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+    <VBox fx:id="pairVBox"
+          spacing="5.0"
+          AnchorPane.bottomAnchor="60.0"
+          AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0"
           AnchorPane.topAnchor="0.0">
         <Label fx:id="dataLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Data">
             <VBox.margin>

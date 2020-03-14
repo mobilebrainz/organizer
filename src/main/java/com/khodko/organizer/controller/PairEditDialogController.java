@@ -2,7 +2,6 @@ package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
-import com.khodko.organizer.storage.StaticStorage;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,6 +18,13 @@ import javafx.stage.Stage;
 
 
 public class PairEditDialogController {
+
+    private ObservableList<String> types = FXCollections.observableArrayList();
+    {
+        types.add("ЛБ");
+        types.add("ПР");
+        types.add("Лекция");
+    }
 
     @FXML
     private Spinner<Integer> numPairSpinner;
@@ -55,27 +61,16 @@ public class PairEditDialogController {
         int weekDay = mainApp.getDate().getDayOfWeek().ordinal();
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
 
-        initLessonsChoiceBox();
-        initTypesChoiceBox();
-        initTeachersChoiceBox();
-        showDetails();
-    }
-
-    private void initLessonsChoiceBox() {
         ObservableList<String> lessons = mainApp.getLessonsStorage().getLessons();
         lessonsChoiceBox.setItems(lessons);
-    }
 
-    private void initTeachersChoiceBox() {
         ObservableList<String> teachers = mainApp.getTeachersStorage().getTeachers();
         teachersChoiceBox.setItems(teachers);
-    }
 
-    private void initTypesChoiceBox() {
-        List<String> types = StaticStorage.types;
         Collections.sort(types);
-        ObservableList<String> observableTypes = FXCollections.observableArrayList(types);
-        typesChoiceBox.setItems(observableTypes);
+        typesChoiceBox.setItems(types);
+
+        showDetails();
     }
 
     private void showDetails() {

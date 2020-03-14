@@ -21,14 +21,16 @@ public class WeekScheduleStorage {
     public WeekScheduleStorage() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
+        read();
     }
 
     public void read() {
         try {
             File file = new File(WEEK_SCHEDULE_DIR);
             if (file.exists()) {
-                weekSchedule = objectMapper.readValue(file, new TypeReference<List<List<Pair>>>() {
-                });
+                weekSchedule.clear();
+                weekSchedule.addAll(objectMapper.readValue(file, new TypeReference<List<List<Pair>>>() {
+                }));
             }
         } catch (IOException e) {
             e.printStackTrace();

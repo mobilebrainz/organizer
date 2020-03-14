@@ -38,10 +38,6 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Organizer");
         initRootLayout();
 
-        weekScheduleStorage.read();
-        lessonsStorage.read();
-        teachersStorage.read();
-
         showDaySchedule();
     }
 

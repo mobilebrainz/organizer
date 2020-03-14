@@ -23,6 +23,7 @@ public class TeachersStorage {
     public TeachersStorage() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
+        read();
     }
 
     public void read() {

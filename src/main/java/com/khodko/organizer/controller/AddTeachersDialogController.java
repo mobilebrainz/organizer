@@ -2,6 +2,7 @@ package com.khodko.organizer.controller;
 
 
 import com.khodko.organizer.MainApp;
+import com.khodko.organizer.storage.TeachersStorage;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,11 +18,11 @@ public class AddTeachersDialogController {
     @FXML
     private ListView<String> listView;
 
-    private MainApp mainApp;
     private ObservableList<String> teachers;
+    private TeachersStorage teachersStorage;
 
     public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+        teachersStorage = mainApp.getTeachersStorage();
         teachers = mainApp.getTeachersStorage().getTeachers();
         listView.setItems(teachers);
     }
@@ -31,7 +32,7 @@ public class AddTeachersDialogController {
         String teacher = teacherField.getText().trim();
         if (!teacher.isEmpty() && !teachers.contains(teacher)) {
             teachers.add(teacher);
-            mainApp.getTeachersStorage().write();
+            teachersStorage.write();
         }
         teacherField.setText("");
     }
@@ -40,7 +41,7 @@ public class AddTeachersDialogController {
     public void onDeleteBtn() {
         ObservableList<String> selectedTeachers = listView.getSelectionModel().getSelectedItems();
         teachers.removeAll(selectedTeachers);
-        mainApp.getTeachersStorage().write();
+        teachersStorage.write();
     }
 
 }

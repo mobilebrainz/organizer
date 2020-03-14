@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 
@@ -23,12 +25,14 @@ public class LessonsStorage {
     public LessonsStorage() {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
+        read();
     }
 
     public void read() {
         try {
             File file = new File(LESSONS_DIR);
             if (file.exists()) {
+                lessons.clear();
                 lessons.addAll(objectMapper.readValue(file, new TypeReference<List<String>>() {
                 }));
             }

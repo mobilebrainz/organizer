@@ -46,6 +46,12 @@
   "lesson" : "История",
   "pairType" : "ЛБ",
   "cabinet" : "365"
+}, {
+  "num" : 6,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Физика",
+  "pairType" : "ЛБ",
+  "cabinet" : "678"
 } ], [ {
   "num" : 2,
   "teacher" : "Сидоров Ф.О.",

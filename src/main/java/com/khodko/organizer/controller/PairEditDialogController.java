@@ -19,13 +19,6 @@ import javafx.stage.Stage;
 
 public class PairEditDialogController {
 
-    private ObservableList<String> types = FXCollections.observableArrayList();
-    {
-        types.add("ЛБ");
-        types.add("ПР");
-        types.add("Лекция");
-    }
-
     @FXML
     private Spinner<Integer> numPairSpinner;
 
@@ -47,6 +40,7 @@ public class PairEditDialogController {
     private MainApp mainApp;
     private Stage dialogStage;
     private Pair pair;
+    private ObservableList<String> types = FXCollections.observableArrayList("ЛБ", "ПР", "Лекция");
 
     private List<Pair> weekSchedule;
 
@@ -61,6 +55,11 @@ public class PairEditDialogController {
         int weekDay = mainApp.getDate().getDayOfWeek().ordinal();
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
 
+        initChoiceBoxes();
+        showDetails();
+    }
+
+    private void initChoiceBoxes() {
         ObservableList<String> lessons = mainApp.getLessonsStorage().getLessons();
         lessonsChoiceBox.setItems(lessons);
 
@@ -69,8 +68,6 @@ public class PairEditDialogController {
 
         Collections.sort(types);
         typesChoiceBox.setItems(types);
-
-        showDetails();
     }
 
     private void showDetails() {

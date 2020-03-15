@@ -105,11 +105,6 @@ public class RootController {
     }
 
     @FXML
-    public void onSaveScheduleLessonsMenu() {
-
-    }
-
-    @FXML
     public void onDatePicker() {
         LocalDate date = datePicker.getValue();
         mainApp.showDaySchedule(date);

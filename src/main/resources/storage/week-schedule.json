@@ -1,9 +1,9 @@
 [ [ {
-  "num" : 1,
+  "num" : 2,
   "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "История",
+  "lesson" : "Физика",
   "pairType" : "ЛБ",
-  "cabinet" : "220"
+  "cabinet" : "35"
 } ], [ ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",

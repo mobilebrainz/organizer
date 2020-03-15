@@ -49,6 +49,21 @@ public class WeekScheduleStorage {
         return weekSchedule;
     }
 
+    public List<List<Pair>> getWeekSchedule(String lesson) {
+        if (lesson == null) return weekSchedule;
+
+        List<List<Pair>> lessonSchedule = new ArrayList<>();
+        for (List<Pair> pairs : weekSchedule) {
+            List<Pair> lessonPairs = new ArrayList<>();
+            for (Pair pair : pairs) {
+                if (pair.getLesson().equals(lesson)) {
+                    lessonPairs.add(pair);
+                }
+            }
+            lessonSchedule.add(lessonPairs);
+        }
+        return lessonSchedule;
+    }
 
     public List<String> getScheduleLessons() {
         List<String> lessons = new ArrayList<>();

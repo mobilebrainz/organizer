@@ -10,9 +10,11 @@ import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.storage.LessonsStorage;
 import com.khodko.organizer.storage.TeachersStorage;
 import com.khodko.organizer.storage.WeekScheduleStorage;
+import com.khodko.organizer.utils.DateUtil;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -61,11 +63,16 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/DayScheduleLayout.fxml"));
-            AnchorPane daySchedule = loader.load();
+            AnchorPane dayScheduleLayout = loader.load();
 
-            rootLayout.setCenter(daySchedule);
+            rootLayout.setCenter(dayScheduleLayout);
+
+            int weekDay = date.getDayOfWeek().ordinal();
+            List<Pair> daySchedule = weekScheduleStorage.getWeekSchedule().get(weekDay);
+            String dataString = DateUtil.getDateString(date);
+
             DayScheduleController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, daySchedule, dataString, false);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,9 +83,9 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/WeekScheduleLayout.fxml"));
-            AnchorPane daySchedule = loader.load();
+            AnchorPane weekScheduleLayout = loader.load();
 
-            rootLayout.setCenter(daySchedule);
+            rootLayout.setCenter(weekScheduleLayout);
             WeekScheduleController controller = loader.getController();
             controller.setMainApp(this, lesson);
 
@@ -91,13 +98,13 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/PairEditDialog.fxml"));
-            AnchorPane page = loader.load();
+            AnchorPane dialogLayout = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Редактировать пары");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
+            Scene scene = new Scene(dialogLayout);
             dialogStage.setScene(scene);
 
             PairEditDialogController controller = loader.getController();
@@ -116,13 +123,13 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/AddLessonsDialog.fxml"));
-            AnchorPane page = loader.load();
+            AnchorPane dialogLayout = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавить предметы");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
+            Scene scene = new Scene(dialogLayout);
             dialogStage.setScene(scene);
 
             AddLessonsDialogController controller = loader.getController();
@@ -138,13 +145,13 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/AddTeachersDialog.fxml"));
-            AnchorPane page = loader.load();
+            AnchorPane dialogLayout = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавить преподавателей");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
+            Scene scene = new Scene(dialogLayout);
             dialogStage.setScene(scene);
 
             AddTeachersDialogController controller = loader.getController();

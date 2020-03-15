@@ -42,10 +42,12 @@ public class PairController {
 
     private MainApp mainApp;
     private Pair pair;
+    private boolean isWeekSchedule;
 
-    public void setMainApp(MainApp mainApp, Pair pair) {
+    public void setMainApp(MainApp mainApp, Pair pair, boolean isWeekSchedule) {
         this.mainApp = mainApp;
         this.pair = pair;
+        this.isWeekSchedule = isWeekSchedule;
         showPairDetails();
     }
 
@@ -60,7 +62,9 @@ public class PairController {
 
     @FXML
     public void onEditPairBtn() {
-        mainApp.showPairEditDialog(pair);
+        if (!isWeekSchedule) {
+            mainApp.showPairEditDialog(pair);
+        }
     }
 
 }

@@ -2,13 +2,13 @@ package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
-import com.khodko.organizer.utils.DateUtil;
 
 import java.io.IOException;
 import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -17,30 +17,33 @@ import javafx.scene.layout.VBox;
 public class DayScheduleController {
 
     @FXML
+    public Button addPairButton;
+
+    @FXML
     private VBox pairVBox;
 
     @FXML
     private Label dataLabel;
 
     private MainApp mainApp;
+    private List<Pair> daySchedule;
+    private boolean isWeekSchedule;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp, List<Pair> daySchedule, String dataString, boolean isWeekSchedule) {
         this.mainApp = mainApp;
+        this.daySchedule = daySchedule;
+        this.isWeekSchedule = isWeekSchedule;
 
-        showDate();
+        if (isWeekSchedule) {
+            addPairButton.setVisible(false);
+        }
+
+        dataLabel.setText(dataString);
         showPairs();
     }
 
-    public void showDate() {
-        String dataString = DateUtil.getDateString(mainApp.getDate());
-        dataLabel.setText(dataString);
-    }
-
     public void showPairs() {
-        int weekDay = mainApp.getDate().getDayOfWeek().ordinal();
-        List<Pair> dayPairs = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
-
-        for (Pair pair : dayPairs) {
+        for (Pair pair : daySchedule) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(MainApp.class.getResource("/fxml/PairLayout.fxml"));
@@ -48,7 +51,7 @@ public class DayScheduleController {
                 pairVBox.getChildren().add(pairLayout);
 
                 PairController controller = loader.getController();
-                controller.setMainApp(mainApp, pair);
+                controller.setMainApp(mainApp, pair, isWeekSchedule);
 
             } catch (IOException e) {
                 e.printStackTrace();

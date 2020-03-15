@@ -52,8 +52,8 @@ public class PairEditDialogController {
         this.mainApp = mainApp;
         this.pair = pair;
 
-        int weekDay = mainApp.getDate().getDayOfWeek().ordinal();
-        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDay);
+        int weekDayOrdianl = mainApp.getWeekDayOrdinal();
+        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDayOrdianl);
 
         initChoiceBoxes();
         showDetails();
@@ -112,7 +112,6 @@ public class PairEditDialogController {
         pair.setNum(num);
         weekSchedule.add(pair);
 
-        // todo: сделать сортировку вручную
         weekSchedule.sort(Comparator.comparing(Pair::getNum));
 
         mainApp.getWeekScheduleStorage().write();

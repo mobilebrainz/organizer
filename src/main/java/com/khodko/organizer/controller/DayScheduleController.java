@@ -27,16 +27,14 @@ public class DayScheduleController {
 
     private MainApp mainApp;
     private List<Pair> daySchedule;
-    private boolean isWeekSchedule;
+    private boolean isEdit;
 
-    public void setMainApp(MainApp mainApp, List<Pair> daySchedule, String dataString, boolean isWeekSchedule) {
+    public void setMainApp(MainApp mainApp, List<Pair> daySchedule, String dataString, boolean isEdit) {
         this.mainApp = mainApp;
         this.daySchedule = daySchedule;
-        this.isWeekSchedule = isWeekSchedule;
+        this.isEdit = isEdit;
 
-        if (isWeekSchedule) {
-            addPairButton.setVisible(false);
-        }
+        addPairButton.setVisible(isEdit);
 
         dataLabel.setText(dataString);
         showPairs();
@@ -51,7 +49,7 @@ public class DayScheduleController {
                 pairVBox.getChildren().add(pairLayout);
 
                 PairController controller = loader.getController();
-                controller.setMainApp(mainApp, pair, isWeekSchedule);
+                controller.setMainApp(mainApp, pair, isEdit);
 
             } catch (IOException e) {
                 e.printStackTrace();

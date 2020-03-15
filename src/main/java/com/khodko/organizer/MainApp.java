@@ -19,6 +19,7 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -29,7 +30,7 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private LocalDate date = LocalDate.now();
+    private int weekDayOrdinal = 0;
     private WeekScheduleStorage weekScheduleStorage = new WeekScheduleStorage();
     private LessonsStorage lessonsStorage = new LessonsStorage();
     private TeachersStorage teachersStorage = new TeachersStorage();
@@ -40,7 +41,7 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Organizer");
         initRootLayout();
 
-        showDaySchedule();
+        showDaySchedule(LocalDate.now());
     }
 
     public void initRootLayout() {
@@ -59,7 +60,26 @@ public class MainApp extends Application {
         }
     }
 
-    public void showDaySchedule() {
+    public void showEditDaySchedule(int weekDayOrdinal) {
+        this.weekDayOrdinal = weekDayOrdinal;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/fxml/DayScheduleLayout.fxml"));
+            AnchorPane dayScheduleLayout = loader.load();
+
+            rootLayout.setCenter(dayScheduleLayout);
+
+            List<Pair> daySchedule = weekScheduleStorage.getWeekSchedule().get(weekDayOrdinal);
+
+            DayScheduleController controller = loader.getController();
+            controller.setMainApp(this, daySchedule, DateUtil.weekDays[weekDayOrdinal], true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showDaySchedule(LocalDate date) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/DayScheduleLayout.fxml"));
@@ -102,6 +122,7 @@ public class MainApp extends Application {
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Редактировать пары");
+            dialogStage.getIcons().add(new Image("/images/edit.png"));
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(dialogLayout);
@@ -113,7 +134,7 @@ public class MainApp extends Application {
 
             dialogStage.showAndWait();
 
-            showDaySchedule();
+            showEditDaySchedule(weekDayOrdinal);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,6 +148,7 @@ public class MainApp extends Application {
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавить предметы");
+            dialogStage.getIcons().add(new Image("/images/edit.png"));
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(dialogLayout);
@@ -149,6 +171,7 @@ public class MainApp extends Application {
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Добавить преподавателей");
+            dialogStage.getIcons().add(new Image("/images/edit.png"));
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(dialogLayout);
@@ -163,14 +186,6 @@ public class MainApp extends Application {
         }
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public WeekScheduleStorage getWeekScheduleStorage() {
         return weekScheduleStorage;
     }
@@ -181,6 +196,10 @@ public class MainApp extends Application {
 
     public TeachersStorage getTeachersStorage() {
         return teachersStorage;
+    }
+
+    public int getWeekDayOrdinal() {
+        return weekDayOrdinal;
     }
 
     public static void main(String[] args) {

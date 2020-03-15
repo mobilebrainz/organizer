@@ -41,7 +41,7 @@ public class WeekScheduleController {
 
                     DayScheduleController controller = loader.getController();
                     String dateString = DateUtil.weekDays[weekDay];
-                    controller.setMainApp(mainApp, daySchedule, dateString, true);
+                    controller.setMainApp(mainApp, daySchedule, dateString, false);
 
                 } catch (IOException e) {
                     e.printStackTrace();

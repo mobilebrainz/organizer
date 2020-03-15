@@ -15,12 +15,14 @@
                     <MenuItem mnemonicParsing="false" onAction="#onShowWeekScheduleMenu" text="недели" />
                 </Menu>
                 <Menu mnemonicParsing="false" text="Редактировать...">
+                    <MenuItem mnemonicParsing="false" onAction="#onEditScheduleMenu" text="расписание" />
                     <MenuItem mnemonicParsing="false" onAction="#onAddTeachersMenu" text="преподавателей" />
                     <MenuItem mnemonicParsing="false" onAction="#onAddLessonsMenu" text="предметы" />
                 </Menu>
             </MenuBar>
             <DatePicker fx:id="datePicker" onAction="#onDatePicker" AnchorPane.rightAnchor="5.0" />
             <ChoiceBox fx:id="lessonsChoiceBox" visible="false" AnchorPane.rightAnchor="5.0" />
+            <ChoiceBox fx:id="weekDaysChoiceBox" visible="false" AnchorPane.rightAnchor="5.0" />
         </AnchorPane>
 
     </top>

@@ -3,14 +3,8 @@
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "ЛБ",
-  "cabinet" : ""
-} ], [ {
-  "num" : 1,
-  "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "История",
-  "pairType" : "ЛБ",
-  "cabinet" : ""
-} ], [ {
+  "cabinet" : "220"
+} ], [ ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
@@ -37,21 +31,15 @@
 }, {
   "num" : 3,
   "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "История",
-  "pairType" : "Лекция",
-  "cabinet" : "235"
+  "lesson" : "Физика",
+  "pairType" : "ЛБ",
+  "cabinet" : "566"
 }, {
   "num" : 5,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "ЛБ",
   "cabinet" : "365"
-}, {
-  "num" : 6,
-  "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "Физика",
-  "pairType" : "ЛБ",
-  "cabinet" : "678"
 } ], [ {
   "num" : 2,
   "teacher" : "Сидоров Ф.О.",
@@ -63,5 +51,5 @@
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "Лекция",
-  "cabinet" : ""
+  "cabinet" : "344"
 } ] ]

@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<AnchorPane onMouseClicked="#onEditPairBtn"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
-            fx:controller="com.khodko.organizer.controller.PairController"
-            stylesheets="@../style/pair-layout.css">
-    <GridPane minHeight="60.0" prefHeight="60.0" prefWidth="600.0"
-              AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="10.0"
-              AnchorPane.rightAnchor="0.0"
-              AnchorPane.topAnchor="0.0"
-              styleClass="container">
+<AnchorPane onMouseClicked="#onEditPairBtn" stylesheets="@../style/pair-layout.css"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.khodko.organizer.controller.PairController">
+    <GridPane minHeight="60.0" prefHeight="60.0" prefWidth="600.0" styleClass="container" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="40.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="250.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" prefWidth="50.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="50.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="300.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" prefWidth="24.0"/>
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -44,5 +41,9 @@
             </font>
         </Label>
         <Label fx:id="cabinetLabel" text="cabinet" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <ImageView fx:id="editImageView" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true"
+                   GridPane.columnIndex="3" GridPane.rowSpan="2">
+            <Image url="@../images/edit.png"/>
+        </ImageView>
     </GridPane>
 </AnchorPane>

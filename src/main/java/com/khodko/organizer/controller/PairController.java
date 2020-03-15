@@ -5,22 +5,10 @@ import com.khodko.organizer.model.Pair;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 
 public class PairController {
-
-    private String[] pairTimes = {
-            "8:00",
-            "9:30",
-            "11:00",
-            "12:30",
-            "14:00",
-            "15:30",
-            "17:00",
-            "18:30",
-            "20:00",
-            "21:30"
-    };
 
     @FXML
     private Label numPairLabel;
@@ -40,14 +28,33 @@ public class PairController {
     @FXML
     private Label cabinetLabel;
 
+    @FXML
+    public ImageView editImageView;
+
+    private String[] pairTimes = {
+            "8:00",
+            "9:30",
+            "11:00",
+            "12:30",
+            "14:00",
+            "15:30",
+            "17:00",
+            "18:30",
+            "20:00",
+            "21:30"
+    };
+
     private MainApp mainApp;
     private Pair pair;
-    private boolean isWeekSchedule;
+    private boolean isEdit;
 
-    public void setMainApp(MainApp mainApp, Pair pair, boolean isWeekSchedule) {
+    public void setMainApp(MainApp mainApp, Pair pair, boolean isEdit) {
         this.mainApp = mainApp;
         this.pair = pair;
-        this.isWeekSchedule = isWeekSchedule;
+        this.isEdit = isEdit;
+
+        editImageView.setVisible(isEdit);
+
         showPairDetails();
     }
 
@@ -62,7 +69,7 @@ public class PairController {
 
     @FXML
     public void onEditPairBtn() {
-        if (!isWeekSchedule) {
+        if (isEdit) {
             mainApp.showPairEditDialog(pair);
         }
     }

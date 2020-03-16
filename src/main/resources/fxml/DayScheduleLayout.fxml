@@ -6,13 +6,13 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.khodko.organizer.controller.DayScheduleController">
-    <VBox fx:id="pairVBox" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox fx:id="pairVBox" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
       <HBox>
          <VBox.margin>
-            <Insets bottom="5.0" top="10.0" />
+            <Insets bottom="5.0" />
          </VBox.margin>
          <children>
-              <Label fx:id="dataLabel" maxWidth="300.0" minHeight="24.0" minWidth="300.0" text="Data">
+              <Label fx:id="dataLabel" maxWidth="200.0" minHeight="24.0" minWidth="200.0" text="Data">
                <font>
                   <Font size="14.0" />
                </font>

@@ -74,6 +74,8 @@ public class MainApp extends Application {
             DayScheduleController controller = loader.getController();
             controller.setMainApp(this, daySchedule, DateUtil.weekDays[weekDayOrdinal], true);
 
+            primaryStage.sizeToScene();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

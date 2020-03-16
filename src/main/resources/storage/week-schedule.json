@@ -31,7 +31,13 @@
 } ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "История",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : "205"
+}, {
+  "num" : 2,
+  "teacher" : "Сидоров Ф.О.",
+  "lesson" : "Логика",
   "pairType" : "ЛБ",
   "cabinet" : ""
 } ], [ {

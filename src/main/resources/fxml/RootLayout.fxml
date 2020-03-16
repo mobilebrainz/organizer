@@ -13,7 +13,9 @@
             fx:controller="com.khodko.organizer.controller.RootController">
     <top>
         <AnchorPane BorderPane.alignment="CENTER">
-            <MenuBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+            <MenuBar AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.leftAnchor="0.0"
+                     AnchorPane.rightAnchor="0.0"
                      AnchorPane.topAnchor="0.0">
                 <Menu mnemonicParsing="false" text="Расписание">
                     <MenuItem mnemonicParsing="false" onAction="#onShowDayScheduleMenu" text="дня"/>
@@ -29,6 +31,5 @@
             <ChoiceBox fx:id="lessonsChoiceBox" visible="false" AnchorPane.rightAnchor="5.0"/>
             <ChoiceBox fx:id="weekDaysChoiceBox" visible="false" AnchorPane.rightAnchor="5.0"/>
         </AnchorPane>
-
     </top>
 </BorderPane>

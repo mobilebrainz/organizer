@@ -2,14 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.khodko.organizer.controller.WeekScheduleController">
-
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="400.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.khodko.organizer.controller.WeekScheduleController">
     <Button mnemonicParsing="false" onAction="#onSaveScheduleBtn" text="Coхранить в файл" AnchorPane.leftAnchor="10.0"
             AnchorPane.topAnchor="10.0"/>
-    <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+    <ScrollPane fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                 AnchorPane.topAnchor="45.0">
         <VBox fx:id="dayVBox"/>
     </ScrollPane>

@@ -125,7 +125,7 @@ public class MainApp extends Application {
             AnchorPane dialogLayout = loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Редактировать пары");
+            dialogStage.setTitle("Редактировать пару");
             dialogStage.getIcons().add(new Image("/images/edit.png"));
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);

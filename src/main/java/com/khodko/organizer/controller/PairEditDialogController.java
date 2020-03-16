@@ -16,6 +16,8 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import static com.khodko.organizer.MainApp.mainApp;
+
 
 public class PairEditDialogController {
 
@@ -37,7 +39,6 @@ public class PairEditDialogController {
     @FXML
     private Button deleteButton;
 
-    private MainApp mainApp;
     private Stage dialogStage;
     private Pair pair;
     private ObservableList<String> types = FXCollections.observableArrayList("ЛБ", "ПР", "Лекция");
@@ -48,8 +49,7 @@ public class PairEditDialogController {
         this.dialogStage = dialogStage;
     }
 
-    public void setMainApp(MainApp mainApp, Pair pair) {
-        this.mainApp = mainApp;
+    public void init(Pair pair) {
         this.pair = pair;
 
         int weekDayOrdianl = mainApp.getWeekDayOrdinal();

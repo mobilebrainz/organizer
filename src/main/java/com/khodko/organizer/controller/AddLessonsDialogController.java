@@ -1,12 +1,13 @@
 package com.khodko.organizer.controller;
 
 
-import com.khodko.organizer.MainApp;
 import com.khodko.organizer.storage.LessonsStorage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+
+import static com.khodko.organizer.MainApp.mainApp;
 
 
 public class AddLessonsDialogController {
@@ -20,7 +21,8 @@ public class AddLessonsDialogController {
     private ObservableList<String> lessons;
     private LessonsStorage lessonsStorage;
 
-    public void setMainApp(MainApp mainApp) {
+    @FXML
+    private void initialize() {
         lessonsStorage = mainApp.getLessonsStorage();
         lessons = lessonsStorage.getLessons();
         listView.setItems(lessons);

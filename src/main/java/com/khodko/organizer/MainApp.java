@@ -1,21 +1,13 @@
 package com.khodko.organizer;
 
-import com.khodko.organizer.controller.AddLessonsDialogController;
-import com.khodko.organizer.controller.AddTeachersDialogController;
 import com.khodko.organizer.controller.DayScheduleController;
 import com.khodko.organizer.controller.PairEditDialogController;
-import com.khodko.organizer.controller.RootController;
 import com.khodko.organizer.controller.WeekScheduleController;
 import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.storage.LessonsStorage;
 import com.khodko.organizer.storage.TeachersStorage;
 import com.khodko.organizer.storage.WeekScheduleStorage;
 import com.khodko.organizer.utils.DateUtil;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,8 +17,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
+
 
 public class MainApp extends Application {
+
+    public static MainApp mainApp;
 
     private Stage primaryStage;
     private BorderPane rootLayout;
@@ -39,6 +37,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        mainApp = this;
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Organizer");
         this.primaryStage.getIcons().add(new Image("/images/calendar.png"));
@@ -52,8 +51,6 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/RootLayout.fxml"));
             rootLayout = loader.load();
-            RootController controller = loader.getController();
-            controller.setMainApp(this);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -75,7 +72,7 @@ public class MainApp extends Application {
             List<Pair> daySchedule = weekScheduleStorage.getWeekSchedule().get(weekDayOrdinal);
 
             DayScheduleController controller = loader.getController();
-            controller.setMainApp(this, daySchedule, DateUtil.weekDays[weekDayOrdinal], true);
+            controller.init(daySchedule, DateUtil.weekDays[weekDayOrdinal], true);
 
             primaryStage.sizeToScene();
 
@@ -97,7 +94,7 @@ public class MainApp extends Application {
             String dataString = DateUtil.getDateString(date);
 
             DayScheduleController controller = loader.getController();
-            controller.setMainApp(this, daySchedule, dataString, false);
+            controller.init(daySchedule, dataString, false);
 
             primaryStage.sizeToScene();
 
@@ -114,7 +111,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(weekScheduleLayout);
             WeekScheduleController controller = loader.getController();
-            controller.setMainApp(this, lesson);
+            controller.init(lesson);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,7 +134,7 @@ public class MainApp extends Application {
 
             PairEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setMainApp(this, pair);
+            controller.init(pair);
 
             dialogStage.showAndWait();
 
@@ -161,9 +158,6 @@ public class MainApp extends Application {
             Scene scene = new Scene(dialogLayout);
             dialogStage.setScene(scene);
 
-            AddLessonsDialogController controller = loader.getController();
-            controller.setMainApp(this);
-
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -183,9 +177,6 @@ public class MainApp extends Application {
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(dialogLayout);
             dialogStage.setScene(scene);
-
-            AddTeachersDialogController controller = loader.getController();
-            controller.setMainApp(this);
 
             dialogStage.showAndWait();
         } catch (IOException e) {

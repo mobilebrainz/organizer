@@ -1,15 +1,9 @@
 [ [ {
-  "num" : 1,
+  "num" : 2,
   "teacher" : "Яшин Ф.А.",
   "lesson" : "Информатика",
   "pairType" : "Лекция",
   "cabinet" : "205"
-}, {
-  "num" : 2,
-  "teacher" : "Воробьёв Ф.А.",
-  "lesson" : "Физика",
-  "pairType" : "ЛБ",
-  "cabinet" : "35"
 }, {
   "num" : 4,
   "teacher" : "Яшин Ф.А.",

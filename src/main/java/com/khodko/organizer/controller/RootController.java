@@ -1,7 +1,6 @@
 package com.khodko.organizer.controller;
 
 
-import com.khodko.organizer.MainApp;
 import com.khodko.organizer.utils.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +9,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
+
+import static com.khodko.organizer.MainApp.mainApp;
 
 
 public class RootController {
@@ -23,17 +24,13 @@ public class RootController {
     @FXML
     private DatePicker datePicker;
 
-    private MainApp mainApp;
     private String allLessonsItem = "Все предметы";
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-        // вызывает onDatePicker()
-        datePicker.setValue(LocalDate.now());
-    }
 
     @FXML
     private void initialize() {
+        // вызывает onDatePicker()
+        datePicker.setValue(LocalDate.now());
+
         ObservableList<String> weekDays = FXCollections.observableArrayList(DateUtil.weekDays);
         weekDaysChoiceBox.setItems(weekDays);
 

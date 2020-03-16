@@ -1,9 +1,9 @@
 [ [ {
-  "num" : 2,
-  "teacher" : "Яшин Ф.А.",
-  "lesson" : "Информатика",
+  "num" : 1,
+  "teacher" : "Петров В.О.",
+  "lesson" : "Математика",
   "pairType" : "Лекция",
-  "cabinet" : "205"
+  "cabinet" : "56"
 }, {
   "num" : 4,
   "teacher" : "Яшин Ф.А.",

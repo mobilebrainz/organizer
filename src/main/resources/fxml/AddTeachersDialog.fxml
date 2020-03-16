@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <AnchorPane prefHeight="360.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -15,10 +13,10 @@
           AnchorPane.topAnchor="10.0">
         <HBox spacing="10.0">
             <Label minHeight="24.0" text="Преподаватель:"/>
-            <TextField fx:id="teacherField" minWidth="200.0" />
-           <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить" />
+            <TextField fx:id="teacherField" onAction="#onAddBtn" minWidth="200.0"/>
+            <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить"/>
         </HBox>
-        <ListView fx:id="listView" />
-        <Button mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить" />
+        <ListView fx:id="listView"/>
+        <Button mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить"/>
     </VBox>
 </AnchorPane>

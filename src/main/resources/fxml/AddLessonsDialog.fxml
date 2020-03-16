@@ -13,7 +13,7 @@
           AnchorPane.topAnchor="10.0">
         <HBox spacing="10.0">
             <Label minHeight="24.0" text="Предмет:"/>
-            <TextField fx:id="lessonField" minWidth="200.0"/>
+            <TextField fx:id="lessonField" onAction="#onAddBtn" minWidth="200.0"/>
             <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить"/>
         </HBox>
         <ListView fx:id="listView"/>

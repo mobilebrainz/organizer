@@ -2,7 +2,7 @@ package com.khodko.organizer.controller;
 
 
 import com.khodko.organizer.MainApp;
-import com.khodko.organizer.model.Pair;
+import com.khodko.organizer.utils.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,13 +10,15 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
-import java.util.List;
 
 
 public class RootController {
 
     @FXML
     public ChoiceBox<String> lessonsChoiceBox;
+
+    @FXML
+    public ChoiceBox<String> weekDaysChoiceBox;
 
     @FXML
     private DatePicker datePicker;
@@ -27,21 +29,30 @@ public class RootController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         // вызывает onDatePicker()
-        datePicker.setValue(mainApp.getDate());
+        datePicker.setValue(LocalDate.now());
     }
 
     @FXML
     private void initialize() {
+        ObservableList<String> weekDays = FXCollections.observableArrayList(DateUtil.weekDays);
+        weekDaysChoiceBox.setItems(weekDays);
+
         lessonsChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        List<Pair> weekPairs;
                         if (newValue.equals(allLessonsItem)) {
-                            weekPairs = mainApp.getWeekScheduleStorage().getWeekSchedule();
+                            mainApp.showWeekSchedule(null);
                         } else {
-                            weekPairs = mainApp.getWeekScheduleStorage().getScheduleByLesson(newValue);
+                            mainApp.showWeekSchedule(newValue);
                         }
-                        mainApp.showWeekSchedule(weekPairs);
+                    }
+                }
+        );
+
+        weekDaysChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        mainApp.showEditDaySchedule(weekDays.indexOf(newValue));
                     }
                 }
         );
@@ -51,6 +62,7 @@ public class RootController {
     public void onShowDayScheduleMenu() {
         datePicker.setVisible(true);
         lessonsChoiceBox.setVisible(false);
+        weekDaysChoiceBox.setVisible(false);
 
         datePicker.setValue(LocalDate.now());
         onDatePicker();
@@ -59,6 +71,7 @@ public class RootController {
     @FXML
     public void onShowWeekScheduleMenu() {
         datePicker.setVisible(false);
+        weekDaysChoiceBox.setVisible(false);
         lessonsChoiceBox.setVisible(true);
 
         ObservableList<String> observableLessons = FXCollections.observableArrayList();
@@ -80,15 +93,19 @@ public class RootController {
     }
 
     @FXML
-    public void onSaveScheduleLessonsMenu() {
+    public void onEditScheduleMenu() {
+        datePicker.setVisible(false);
+        lessonsChoiceBox.setVisible(false);
+        weekDaysChoiceBox.setVisible(true);
 
+        // вызывает слушателя на weekDaysChoiceBox (см. в initialize())
+        weekDaysChoiceBox.getSelectionModel().selectFirst();
     }
 
     @FXML
     public void onDatePicker() {
         LocalDate date = datePicker.getValue();
-        mainApp.setDate(date);
-        mainApp.showDaySchedule();
+        mainApp.showDaySchedule(date);
     }
 
 }

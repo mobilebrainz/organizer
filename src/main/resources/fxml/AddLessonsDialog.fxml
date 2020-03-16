@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="360.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.khodko.organizer.controller.AddLessonsDialogController">
-    <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+    <VBox spacing="10.0"
+          AnchorPane.bottomAnchor="10.0"
+          AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0"
           AnchorPane.topAnchor="10.0">
-        <HBox>
-            <Label minHeight="24.0" text="Предмет:">
-                <HBox.margin>
-                    <Insets right="10.0"/>
-                </HBox.margin>
-            </Label>
-            <TextField fx:id="lessonField" minWidth="250.0"/>
+        <HBox spacing="10.0">
+            <Label minHeight="24.0" text="Предмет:"/>
+            <TextField fx:id="lessonField" onAction="#onAddBtn" minWidth="200.0"/>
+            <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить"/>
         </HBox>
-        <Button mnemonicParsing="false" onAction="#onAddBtn" text="Добавить"/>
         <ListView fx:id="listView"/>
         <Button mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить"/>
     </VBox>

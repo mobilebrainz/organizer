@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.khodko.organizer.controller.RootController">
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane prefHeight="100" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.khodko.organizer.controller.RootController">
     <top>
         <AnchorPane BorderPane.alignment="CENTER">
-            <MenuBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                <Menu mnemonicParsing="false" text="Сохранить">
-                    <MenuItem mnemonicParsing="false" onAction="#onSaveScheduleLessonsMenu" text="предметы расписания" />
-                </Menu>
+            <MenuBar AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.leftAnchor="0.0"
+                     AnchorPane.rightAnchor="0.0"
+                     AnchorPane.topAnchor="0.0">
                 <Menu mnemonicParsing="false" text="Расписание">
-                    <MenuItem mnemonicParsing="false" onAction="#onShowDayScheduleMenu" text="дня" />
-                    <MenuItem mnemonicParsing="false" onAction="#onShowWeekScheduleMenu" text="недели" />
+                    <MenuItem mnemonicParsing="false" onAction="#onShowDayScheduleMenu" text="дня"/>
+                    <MenuItem mnemonicParsing="false" onAction="#onShowWeekScheduleMenu" text="недели"/>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Редактировать...">
-                    <MenuItem mnemonicParsing="false" onAction="#onAddTeachersMenu" text="преподавателей" />
-                    <MenuItem mnemonicParsing="false" onAction="#onAddLessonsMenu" text="предметы" />
+                    <MenuItem mnemonicParsing="false" onAction="#onEditScheduleMenu" text="расписание"/>
+                    <MenuItem mnemonicParsing="false" onAction="#onAddTeachersMenu" text="преподавателей"/>
+                    <MenuItem mnemonicParsing="false" onAction="#onAddLessonsMenu" text="предметы"/>
                 </Menu>
             </MenuBar>
-            <DatePicker fx:id="datePicker" onAction="#onDatePicker" AnchorPane.rightAnchor="5.0" />
-            <ChoiceBox fx:id="lessonsChoiceBox" visible="false" AnchorPane.rightAnchor="5.0" />
+            <DatePicker fx:id="datePicker" onAction="#onDatePicker" AnchorPane.rightAnchor="5.0"/>
+            <ChoiceBox fx:id="lessonsChoiceBox" visible="false" AnchorPane.rightAnchor="5.0"/>
+            <ChoiceBox fx:id="weekDaysChoiceBox" visible="false" AnchorPane.rightAnchor="5.0"/>
         </AnchorPane>
-
     </top>
 </BorderPane>

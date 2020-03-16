@@ -2,7 +2,6 @@ package com.khodko.organizer.model;
 
 public class Pair {
 
-    private Integer weekDay;
     private Integer num;
     private String teacher;
     private String lesson;
@@ -11,14 +10,6 @@ public class Pair {
 
     public Pair () {
 
-    }
-
-    public Integer getWeekDay() {
-        return weekDay;
-    }
-
-    public void setWeekDay(Integer weekDay) {
-        this.weekDay = weekDay;
     }
 
     public Integer getNum() {
@@ -59,5 +50,13 @@ public class Pair {
 
     public void setCabinet(String cabinet) {
         this.cabinet = cabinet;
+    }
+
+    @Override
+    public String toString() {
+        return " \nПара: " + num + "\n" +
+                "\tпредмет: " + lesson + " (" + pairType + ")\n" +
+                "\tпреподаватель: " + teacher + "\n" +
+                "\tкабинет: " + cabinet + "\n";
     }
 }

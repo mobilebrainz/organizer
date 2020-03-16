@@ -1,22 +1,91 @@
-[ {
-  "weekDay" : 4,
+[ [ {
   "num" : 1,
-  "teacher" : "Иванов Ф.А.",
-  "lesson" : "Математика",
-  "pairType" : "ЛБ",
-  "cabinet" : "342"
+  "teacher" : "Яшин Ф.А.",
+  "lesson" : "Информатика",
+  "pairType" : "Лекция",
+  "cabinet" : "205"
 }, {
-  "weekDay" : 4,
   "num" : 2,
-  "teacher" : "Никитин А.Л.",
+  "teacher" : "Воробьёв Ф.А.",
   "lesson" : "Физика",
   "pairType" : "ЛБ",
-  "cabinet" : "342"
+  "cabinet" : "35"
 }, {
-  "weekDay" : 3,
-  "num" : 3,
+  "num" : 4,
+  "teacher" : "Яшин Ф.А.",
+  "lesson" : "Логика",
+  "pairType" : "ПР",
+  "cabinet" : "303"
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "Лекция",
+  "cabinet" : "301"
+}, {
+  "num" : 2,
+  "teacher" : "Сидоров Ф.О.",
+  "lesson" : "Информатика",
+  "pairType" : "Лекция",
+  "cabinet" : "204"
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : "205"
+}, {
+  "num" : 2,
+  "teacher" : "Сидоров Ф.О.",
+  "lesson" : "Логика",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+} ], [ {
+  "num" : 1,
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "Математика",
   "pairType" : "ЛБ",
-  "cabinet" : "334"
-} ]
+  "cabinet" : "402"
+}, {
+  "num" : 2,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Физика",
+  "pairType" : "ЛБ",
+  "cabinet" : "340"
+}, {
+  "num" : 3,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Физика",
+  "pairType" : "ЛБ",
+  "cabinet" : "566"
+}, {
+  "num" : 5,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "ЛБ",
+  "cabinet" : "365"
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : "234"
+}, {
+  "num" : 2,
+  "teacher" : "Сидоров Ф.О.",
+  "lesson" : "Философия",
+  "pairType" : "ПР",
+  "cabinet" : "126"
+} ], [ {
+  "num" : 1,
+  "teacher" : "Воробьёв Ф.А.",
+  "lesson" : "История",
+  "pairType" : "Лекция",
+  "cabinet" : "344"
+} ] ]

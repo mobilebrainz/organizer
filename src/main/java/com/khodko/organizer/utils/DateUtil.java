@@ -6,14 +6,14 @@ import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
 
-    private static String[] weekDays = {
-            "понедельник",
-            "вторник",
-            "среда",
-            "четверг",
-            "пятница",
-            "суббота",
-            "воскресенье"
+    public static String[] weekDays = {
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница",
+            "Суббота",
+            "Воскресенье"
     };
 
     public static String getDateString(LocalDate date) {

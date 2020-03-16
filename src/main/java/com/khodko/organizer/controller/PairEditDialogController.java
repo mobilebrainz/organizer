@@ -2,8 +2,11 @@ package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
-import com.khodko.organizer.storage.StaticStorage;
-import com.khodko.organizer.utils.DateUtil;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,9 +15,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.Collections;
-import java.util.List;
 
 
 public class PairEditDialogController {
@@ -40,47 +40,34 @@ public class PairEditDialogController {
     private MainApp mainApp;
     private Stage dialogStage;
     private Pair pair;
+    private ObservableList<String> types = FXCollections.observableArrayList("ЛБ", "ПР", "Лекция");
 
     private List<Pair> weekSchedule;
-    private Integer weekDay;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void init(MainApp mainApp, Pair pair) {
+    public void setMainApp(MainApp mainApp, Pair pair) {
         this.mainApp = mainApp;
         this.pair = pair;
 
-        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
-        weekDay = mainApp.getDate().getDayOfWeek().ordinal();
+        int weekDayOrdianl = mainApp.getWeekDayOrdinal();
+        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDayOrdianl);
 
-        initLessonsChoiceBox();
-        initTypesChoiceBox();
-        initTeachersChoiceBox();
+        initChoiceBoxes();
         showDetails();
     }
 
-    private void initLessonsChoiceBox() {
-        List<String> lessons = mainApp.getLessonsStorage().getLessons();
-        ObservableList<String> observableLessons = FXCollections.observableArrayList();
-        observableLessons.addAll(lessons);
-        lessonsChoiceBox.setItems(observableLessons);
-    }
+    private void initChoiceBoxes() {
+        ObservableList<String> lessons = mainApp.getLessonsStorage().getLessons();
+        lessonsChoiceBox.setItems(lessons);
 
-    private void initTypesChoiceBox() {
-        List<String> types = StaticStorage.types;
+        ObservableList<String> teachers = mainApp.getTeachersStorage().getTeachers();
+        teachersChoiceBox.setItems(teachers);
+
         Collections.sort(types);
-        ObservableList<String> observableTypes = FXCollections.observableArrayList();
-        observableTypes.addAll(types);
-        typesChoiceBox.setItems(observableTypes);
-    }
-
-    private void initTeachersChoiceBox() {
-        List<String> teachers = mainApp.getTeachersStorage().getTeachers();
-        ObservableList<String> ObservableTeachers = FXCollections.observableArrayList();
-        ObservableTeachers.addAll(teachers);
-        teachersChoiceBox.setItems(ObservableTeachers);
+        typesChoiceBox.setItems(types);
     }
 
     private void showDetails() {
@@ -93,7 +80,6 @@ public class PairEditDialogController {
             cabinetField.setText(pair.getCabinet());
         } else {
             pair = new Pair();
-            pair.setWeekDay(weekDay);
             deleteButton.setVisible(false);
             numPairSpinner.getValueFactory().setValue(1);
             lessonsChoiceBox.getSelectionModel().selectFirst();
@@ -119,16 +105,27 @@ public class PairEditDialogController {
         pair.setCabinet(cabinetField.getText());
 
         int num = numPairSpinner.getValue();
-        
-        // Удалить пару с тем же номером и неделй, что добавляется.
-        // Это обеспечит уникальность пары в расписании
-        weekSchedule.remove(mainApp.getWeekScheduleStorage().getPair(weekDay, num));
+
+        // Удалить пару с тем же номером, что добавляется. Это обеспечит уникальность пары в расписании
+        weekSchedule.remove(getPair(num));
 
         pair.setNum(num);
         weekSchedule.add(pair);
+
+        weekSchedule.sort(Comparator.comparing(Pair::getNum));
+
         mainApp.getWeekScheduleStorage().write();
 
         dialogStage.close();
+    }
+
+    public Pair getPair(Integer num) {
+        for (Pair pair : weekSchedule) {
+            if (pair.getNum().equals(num)) {
+                return pair;
+            }
+        }
+        return null;
     }
 
     @FXML

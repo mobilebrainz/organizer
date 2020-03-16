@@ -94,6 +94,8 @@ public class MainApp extends Application {
             DayScheduleController controller = loader.getController();
             controller.setMainApp(this, daySchedule, dataString, false);
 
+            primaryStage.sizeToScene();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

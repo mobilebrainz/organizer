@@ -30,7 +30,9 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+
     private int weekDayOrdinal = 0;
+
     private WeekScheduleStorage weekScheduleStorage = new WeekScheduleStorage();
     private LessonsStorage lessonsStorage = new LessonsStorage();
     private TeachersStorage teachersStorage = new TeachersStorage();
@@ -39,6 +41,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Organizer");
+        this.primaryStage.getIcons().add(new Image("/images/calendar.png"));
         initRootLayout();
 
         showDaySchedule(LocalDate.now());

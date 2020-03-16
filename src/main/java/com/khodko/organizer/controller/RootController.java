@@ -3,7 +3,6 @@ package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.utils.DateUtil;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,7 +25,6 @@ public class RootController {
 
     private MainApp mainApp;
     private String allLessonsItem = "Все предметы";
-    private ObservableList<String> weekDays = FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -36,7 +34,7 @@ public class RootController {
 
     @FXML
     private void initialize() {
-        weekDays.addAll(DateUtil.weekDays);
+        ObservableList<String> weekDays = FXCollections.observableArrayList(DateUtil.weekDays);
         weekDaysChoiceBox.setItems(weekDays);
 
         lessonsChoiceBox.getSelectionModel().selectedItemProperty().addListener(

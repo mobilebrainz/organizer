@@ -31,7 +31,7 @@ public class PairController {
     @FXML
     public ImageView editImageView;
 
-    private String[] pairTimes = {
+    public static String[] pairTimes = {
             "8:00",
             "9:30",
             "11:00",

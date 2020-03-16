@@ -3,14 +3,16 @@ package com.khodko.organizer.controller;
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.utils.DateUtil;
-
-import java.io.IOException;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
 
 
 public class WeekScheduleController {
@@ -29,8 +31,8 @@ public class WeekScheduleController {
     }
 
     private void showSchedule() {
-        for (int weekDay = 0; weekDay < weekSchedule.size(); weekDay++) {
-            List<Pair> daySchedule = weekSchedule.get(weekDay);
+        for (int i = 0; i < weekSchedule.size(); i++) {
+            List<Pair> daySchedule = weekSchedule.get(i);
 
             if (!daySchedule.isEmpty()) {
                 try {
@@ -40,7 +42,7 @@ public class WeekScheduleController {
                     dayVBox.getChildren().add(pairLayout);
 
                     DayScheduleController controller = loader.getController();
-                    String dateString = DateUtil.weekDays[weekDay];
+                    String dateString = DateUtil.weekDays[i];
                     controller.setMainApp(mainApp, daySchedule, dateString, false);
 
                 } catch (IOException e) {
@@ -52,6 +54,47 @@ public class WeekScheduleController {
 
     @FXML
     public void onSaveScheduleBtn() {
+        FileChooser fileChooser = new FileChooser();
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "Txt files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
 
+        // Show save file dialog
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+
+        if (file != null) {
+            // Make sure it has the correct extension
+            if (!file.getPath().endsWith(".txt")) {
+                file = new File(file.getPath() + ".txt");
+            }
+            saveFile(file);
+        }
+    }
+
+    private void saveFile(File file) {
+        try {
+            StringBuilder stringBuilder = new StringBuilder("");
+            for (int i = 0; i < weekSchedule.size(); i++) {
+                List<Pair> daySchedule = weekSchedule.get(i);
+                if (!daySchedule.isEmpty()) {
+                    stringBuilder.append(DateUtil.weekDays[i]).append("\n");
+                    for (Pair pair : daySchedule) {
+                        stringBuilder.append("\t")
+                                .append(pair.getNum())
+                                .append(" (").append(PairController.pairTimes[pair.getNum()]).append("): ")
+                                .append(pair.getLesson())
+                                .append(" (").append(pair.getPairType()).append("), ")
+                                .append(pair.getTeacher()).append(", ")
+                                .append("каб: ").append(pair.getCabinet())
+                                .append("\n");
+                    }
+                }
+            }
+            byte[] strToBytes = stringBuilder.toString().getBytes();
+            Files.write(file.toPath(), strToBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

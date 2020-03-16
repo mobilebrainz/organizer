@@ -51,4 +51,12 @@ public class Pair {
     public void setCabinet(String cabinet) {
         this.cabinet = cabinet;
     }
+
+    @Override
+    public String toString() {
+        return " \nПара: " + num + "\n" +
+                "\tпредмет: " + lesson + " (" + pairType + ")\n" +
+                "\tпреподаватель: " + teacher + "\n" +
+                "\tкабинет: " + cabinet + "\n";
+    }
 }

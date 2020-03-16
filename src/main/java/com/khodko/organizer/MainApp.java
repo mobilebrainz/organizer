@@ -186,6 +186,10 @@ public class MainApp extends Application {
         }
     }
 
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     public WeekScheduleStorage getWeekScheduleStorage() {
         return weekScheduleStorage;
     }

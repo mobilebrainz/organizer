@@ -1,9 +1,15 @@
 [ [ {
-  "num" : 1,
+  "num" : 2,
   "teacher" : "Петров В.О.",
-  "lesson" : "Математика",
-  "pairType" : "Лекция",
-  "cabinet" : "56"
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
+}, {
+  "num" : 3,
+  "teacher" : "Петров В.О.",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
 }, {
   "num" : 4,
   "teacher" : "Яшин Ф.А.",

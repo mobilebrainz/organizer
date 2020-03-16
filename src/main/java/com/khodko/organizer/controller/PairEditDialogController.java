@@ -107,7 +107,7 @@ public class PairEditDialogController {
         int num = numPairSpinner.getValue();
 
         // Удалить пару с тем же номером, что добавляется. Это обеспечит уникальность пары в расписании
-        weekSchedule.remove(getPair(num));
+        //weekSchedule.remove(getPair(num));
 
         pair.setNum(num);
         weekSchedule.add(pair);

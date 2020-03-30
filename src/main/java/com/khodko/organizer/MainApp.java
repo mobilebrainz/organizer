@@ -60,8 +60,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void showEditDaySchedule(int weekDayOrdinal) {
-        this.weekDayOrdinal = weekDayOrdinal;
+    public void showEditDaySchedule() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/fxml/DayScheduleLayout.fxml"));
@@ -133,12 +132,9 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             PairEditDialogController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            controller.init(pair);
+            controller.init(pair, dialogStage);
 
             dialogStage.showAndWait();
-
-            showEditDaySchedule(weekDayOrdinal);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -202,6 +198,10 @@ public class MainApp extends Application {
 
     public int getWeekDayOrdinal() {
         return weekDayOrdinal;
+    }
+
+    public void setWeekDayOrdinal(int weekDayOrdinal) {
+        this.weekDayOrdinal = weekDayOrdinal;
     }
 
     public static void main(String[] args) {

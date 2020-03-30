@@ -49,7 +49,8 @@ public class RootController {
         weekDaysChoiceBox.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        mainApp.showEditDaySchedule(weekDays.indexOf(newValue));
+                        mainApp.setWeekDayOrdinal(weekDays.indexOf(newValue));
+                        mainApp.showEditDaySchedule();
                     }
                 }
         );

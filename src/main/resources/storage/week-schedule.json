@@ -1,21 +1,21 @@
 [ [ {
-  "num" : 2,
+  "num" : 1,
   "teacher" : "Петров В.О.",
-  "lesson" : "Информатика",
+  "lesson" : "Философия",
   "pairType" : "ЛБ",
-  "cabinet" : ""
-}, {
-  "num" : 3,
-  "teacher" : "Петров В.О.",
-  "lesson" : "Информатика",
-  "pairType" : "ЛБ",
-  "cabinet" : ""
+  "cabinet" : "333"
 }, {
   "num" : 4,
   "teacher" : "Яшин Ф.А.",
   "lesson" : "Логика",
   "pairType" : "ПР",
   "cabinet" : "303"
+}, {
+  "num" : 5,
+  "teacher" : "Петров В.О.",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : ""
 } ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",
@@ -45,7 +45,13 @@
   "teacher" : "Воробьёв Ф.А.",
   "lesson" : "История",
   "pairType" : "ЛБ",
-  "cabinet" : ""
+  "cabinet" : "234"
+}, {
+  "num" : 2,
+  "teacher" : "Петров В.О.",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : "34"
 } ], [ {
   "num" : 1,
   "teacher" : "Воробьёв Ф.А.",

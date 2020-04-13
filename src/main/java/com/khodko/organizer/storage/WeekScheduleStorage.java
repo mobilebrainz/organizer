@@ -7,13 +7,17 @@ import com.khodko.organizer.model.Pair;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class WeekScheduleStorage {
 
-    private final String WEEK_SCHEDULE_DIR = "src/main/resources/storage/week-schedule.json";
+    private final String SCHEDULE_DIR = "src/main/resources/storage/";
+    private final String SCHEDULE_FILE = "week-schedule.json";
 
     private List<List<Pair>> weekSchedule = new ArrayList<>();
     private ObjectMapper objectMapper;
@@ -26,11 +30,20 @@ public class WeekScheduleStorage {
 
     public void read() {
         try {
-            File file = new File(WEEK_SCHEDULE_DIR);
+            //File file = new File(WEEK_SCHEDULE_DIR2);
+            weekSchedule.clear();
+
+            File file = new File(SCHEDULE_DIR + SCHEDULE_FILE);
             if (file.exists()) {
-                weekSchedule.clear();
                 weekSchedule.addAll(objectMapper.readValue(file, new TypeReference<List<List<Pair>>>() {
                 }));
+            } else {
+                //создать пустой List<List<Pair>>
+                for (int i = 0; i < 7; i++) {
+                    weekSchedule.add(new ArrayList<>());
+                }
+                // создать пустой json файл типа List<List<Pair>>
+                write();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +52,12 @@ public class WeekScheduleStorage {
 
     public void write() {
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(WEEK_SCHEDULE_DIR), weekSchedule);
+            Path directory = Paths.get(SCHEDULE_DIR);
+            if (!Files.isDirectory(directory)) {
+                Files.createDirectory(directory);
+            }
+            File file = new File(SCHEDULE_DIR + SCHEDULE_FILE);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, weekSchedule);
         } catch (IOException e) {
             e.printStackTrace();
         }

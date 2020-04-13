@@ -1,18 +1,4 @@
 [ {
-  "weekDay" : 0,
-  "num" : 2,
-  "teacher" : "Петров В.О.",
-  "lesson" : "Математика",
-  "pairType" : "ЛБ",
-  "cabinet" : "345"
-}, {
-  "weekDay" : 0,
-  "num" : 3,
-  "teacher" : "Петров В.О.",
-  "lesson" : "Информатика",
-  "pairType" : "ЛБ",
-  "cabinet" : "111"
-}, {
   "weekDay" : 3,
   "num" : 1,
   "teacher" : "Петров В.О.",
@@ -26,4 +12,18 @@
   "lesson" : "Философия",
   "pairType" : "ПР",
   "cabinet" : "234"
+}, {
+  "weekDay" : 0,
+  "num" : 1,
+  "teacher" : "Яшин Ф.А.",
+  "lesson" : "Физика",
+  "pairType" : "Лекция",
+  "cabinet" : "435"
+}, {
+  "weekDay" : 0,
+  "num" : 3,
+  "teacher" : "Петров В.О.",
+  "lesson" : "Информатика",
+  "pairType" : "ЛБ",
+  "cabinet" : "11"
 } ]

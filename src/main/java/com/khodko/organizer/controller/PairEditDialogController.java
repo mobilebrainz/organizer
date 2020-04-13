@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.khodko.organizer.MainApp.mainApp;
@@ -40,12 +41,12 @@ public class PairEditDialogController {
     private Pair pair;
     private ObservableList<String> types = FXCollections.observableArrayList("ЛБ", "ПР", "Лекция");
 
-    private List<Pair> weekSchedule;
+    private List<Pair> schedule;
 
     public void init(Pair pair, Stage dialogStage) {
         this.pair = pair;
         this.dialogStage = dialogStage;
-        weekSchedule = mainApp.getWeekScheduleStorage().getSchedule();
+        schedule = mainApp.getWeekScheduleStorage().getSchedule();
 
         initChoiceBoxes();
         showDetails();
@@ -84,8 +85,10 @@ public class PairEditDialogController {
 
     @FXML
     public void onOkBtn() {
-        weekSchedule.remove(pair);
+        schedule.remove(pair);
 
+        // todo: сделать проверку выбора урока, преподавателя.
+        //  Если null - вывести алерт с сообщением, что надо сначала добавить предмет или преподавателя в приложение
         String lesson = lessonsChoiceBox.getSelectionModel().getSelectedItem();
         pair.setLesson(lesson);
 
@@ -95,10 +98,16 @@ public class PairEditDialogController {
         String type = typesChoiceBox.getSelectionModel().getSelectedItem();
         pair.setPairType(type);
 
-        pair.setCabinet(cabinetField.getText());
-        
-        pair.setNum(numPairSpinner.getValue());
-        weekSchedule.add(pair);
+        // todo: сделать проверку ввода номера кабинета
+        pair.setCabinet(cabinetField.getText().trim());
+
+        int num = numPairSpinner.getValue();
+
+        pair.setNum(num);
+        schedule.add(pair);
+
+        //todo: сделать свою сортировку
+        schedule.sort(Comparator.comparing(Pair::getNum));
 
         mainApp.getWeekScheduleStorage().write();
 
@@ -109,7 +118,7 @@ public class PairEditDialogController {
     @FXML
     public void onDeleteBtn() {
         dialogStage.close();
-        weekSchedule.remove(pair);
+        schedule.remove(pair);
         mainApp.getWeekScheduleStorage().write();
         mainApp.showEditDaySchedule();
     }

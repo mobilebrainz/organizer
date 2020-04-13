@@ -45,7 +45,7 @@ public class PairEditDialogController {
     public void init(Pair pair, Stage dialogStage) {
         this.pair = pair;
         this.dialogStage = dialogStage;
-        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
+        weekSchedule = mainApp.getWeekScheduleStorage().getSchedule();
 
         initChoiceBoxes();
         showDetails();

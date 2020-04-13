@@ -13,6 +13,15 @@ public class Pair {
 
     }
 
+    public Pair(Integer weekDay, Integer num, String teacher, String lesson, String pairType, String cabinet) {
+        this.weekDay = weekDay;
+        this.num = num;
+        this.teacher = teacher;
+        this.lesson = lesson;
+        this.pairType = pairType;
+        this.cabinet = cabinet;
+    }
+
     public Integer getWeekDay() {
         return weekDay;
     }
@@ -63,9 +72,6 @@ public class Pair {
 
     @Override
     public String toString() {
-        return " \nПара: " + num + "\n" +
-                "\tпредмет: " + lesson + " (" + pairType + ")\n" +
-                "\tпреподаватель: " + teacher + "\n" +
-                "\tкабинет: " + cabinet + "\n";
+        return weekDay + "|" + num + "|" + teacher + "|" + lesson + "|" + pairType + "|" + cabinet;
     }
 }

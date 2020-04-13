@@ -76,7 +76,9 @@ public class RootController {
         observableLessons.add(allLessonsItem);
         observableLessons.addAll(mainApp.getWeekScheduleStorage().getScheduleLessons());
         lessonsChoiceBox.setItems(observableLessons);
+
         // вызывает слушателя на lessonsChoiceBox (см. в initialize())
+        lessonsChoiceBox.getSelectionModel().clearSelection();
         lessonsChoiceBox.getSelectionModel().selectFirst();
     }
 
@@ -97,6 +99,7 @@ public class RootController {
         weekDaysChoiceBox.setVisible(true);
 
         // вызывает слушателя на weekDaysChoiceBox (см. в initialize())
+        weekDaysChoiceBox.getSelectionModel().clearSelection();
         weekDaysChoiceBox.getSelectionModel().selectFirst();
     }
 

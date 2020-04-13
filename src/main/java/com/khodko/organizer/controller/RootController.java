@@ -97,6 +97,7 @@ public class RootController {
         weekDaysChoiceBox.setVisible(true);
 
         // вызывает слушателя на weekDaysChoiceBox (см. в initialize())
+        weekDaysChoiceBox.getSelectionModel().clearSelection();
         weekDaysChoiceBox.getSelectionModel().selectFirst();
     }
 

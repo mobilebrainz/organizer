@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.khodko.organizer.MainApp.mainApp;
@@ -22,17 +23,26 @@ public class WeekScheduleController {
     @FXML
     public VBox dayVBox;
 
-    private List<List<Pair>> weekSchedule;
+    private List<Pair> weekSchedule;
 
     public void init(String lesson) {
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule(lesson);
         showSchedule();
     }
 
-    private void showSchedule() {
-        for (int i = 0; i < weekSchedule.size(); i++) {
-            List<Pair> daySchedule = weekSchedule.get(i);
+    private List<Pair> getDaySchedule(int weekDay) {
+        List<Pair> daySchedule = new ArrayList<>();
+        for (Pair pair : weekSchedule) {
+            if (pair.getWeekDay() == weekDay) {
+                daySchedule.add(pair);
+            }
+        }
+        return daySchedule;
+    }
 
+    private void showSchedule() {
+        for (int i = 0; i < 7; i++) {
+            List<Pair> daySchedule = getDaySchedule(i);
             if (!daySchedule.isEmpty()) {
                 try {
                     FXMLLoader loader = new FXMLLoader();
@@ -74,8 +84,8 @@ public class WeekScheduleController {
     private void saveFile(File file) {
         try {
             StringBuilder stringBuilder = new StringBuilder("");
-            for (int i = 0; i < weekSchedule.size(); i++) {
-                List<Pair> daySchedule = weekSchedule.get(i);
+            for (int i = 0; i < 7; i++) {
+                List<Pair> daySchedule = getDaySchedule(i);
                 if (!daySchedule.isEmpty()) {
                     stringBuilder.append(DateUtil.weekDays[i]).append("\n");
                     for (Pair pair : daySchedule) {

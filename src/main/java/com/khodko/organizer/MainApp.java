@@ -68,7 +68,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(dayScheduleLayout);
 
-            List<Pair> daySchedule = weekScheduleStorage.getWeekSchedule().get(weekDayOrdinal);
+            List<Pair> daySchedule = weekScheduleStorage.getDaySchedule(weekDayOrdinal);
 
             DayScheduleController controller = loader.getController();
             controller.init(daySchedule, DateUtil.weekDays[weekDayOrdinal], true);
@@ -89,7 +89,7 @@ public class MainApp extends Application {
             rootLayout.setCenter(dayScheduleLayout);
 
             int weekDay = date.getDayOfWeek().ordinal();
-            List<Pair> daySchedule = weekScheduleStorage.getWeekSchedule().get(weekDay);
+            List<Pair> daySchedule = weekScheduleStorage.getDaySchedule(weekDay);
             String dataString = DateUtil.getDateString(date);
 
             DayScheduleController controller = loader.getController();

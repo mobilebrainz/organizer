@@ -19,7 +19,7 @@ public class WeekScheduleStorage {
     private final String SCHEDULE_DIR = "src/main/resources/storage/";
     private final String SCHEDULE_FILE = "week-schedule.json";
 
-    private List<List<Pair>> weekSchedule = new ArrayList<>();
+    private List<Pair> weekSchedule = new ArrayList<>();
     private ObjectMapper objectMapper;
 
     public WeekScheduleStorage() {
@@ -35,14 +35,10 @@ public class WeekScheduleStorage {
 
             File file = new File(SCHEDULE_DIR + SCHEDULE_FILE);
             if (file.exists()) {
-                weekSchedule.addAll(objectMapper.readValue(file, new TypeReference<List<List<Pair>>>() {
+                weekSchedule.addAll(objectMapper.readValue(file, new TypeReference<List<Pair>>() {
                 }));
             } else {
-                //создать пустой List<List<Pair>>
-                for (int i = 0; i < 7; i++) {
-                    weekSchedule.add(new ArrayList<>());
-                }
-                // создать пустой json файл типа List<List<Pair>>
+                // создать пустой json файл типа List
                 write();
             }
         } catch (IOException e) {
@@ -63,33 +59,37 @@ public class WeekScheduleStorage {
         }
     }
 
-    public List<List<Pair>> getWeekSchedule() {
+    public List<Pair> getWeekSchedule() {
         return weekSchedule;
     }
 
-    public List<List<Pair>> getWeekSchedule(String lesson) {
+    public List<Pair> getDaySchedule(int weekDay) {
+        List<Pair> daySchedule = new ArrayList<>();
+        for (Pair pair : weekSchedule) {
+            if (pair.getWeekDay() == weekDay) {
+                daySchedule.add(pair);
+            }
+        }
+        return daySchedule;
+    }
+
+    public List<Pair> getWeekSchedule(String lesson) {
         if (lesson == null) return weekSchedule;
 
-        List<List<Pair>> lessonSchedule = new ArrayList<>();
-        for (List<Pair> pairs : weekSchedule) {
-            List<Pair> lessonPairs = new ArrayList<>();
-            for (Pair pair : pairs) {
-                if (pair.getLesson().equals(lesson)) {
-                    lessonPairs.add(pair);
-                }
+        List<Pair> lessonSchedule = new ArrayList<>();
+        for (Pair pair : weekSchedule) {
+            if (pair.getLesson().equals(lesson)) {
+                lessonSchedule.add(pair);
             }
-            lessonSchedule.add(lessonPairs);
         }
         return lessonSchedule;
     }
 
     public List<String> getScheduleLessons() {
         List<String> lessons = new ArrayList<>();
-        for (List<Pair> pairs : weekSchedule) {
-            for (Pair pair : pairs) {
-                if (!lessons.contains(pair.getLesson())) {
-                    lessons.add(pair.getLesson());
-                }
+        for (Pair pair : weekSchedule) {
+            if (!lessons.contains(pair.getLesson())) {
+                lessons.add(pair.getLesson());
             }
         }
         return lessons;

@@ -1,11 +1,6 @@
 package com.khodko.organizer.controller;
 
 import com.khodko.organizer.model.Pair;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +9,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.Collections;
+import java.util.List;
 
 import static com.khodko.organizer.MainApp.mainApp;
 
@@ -47,9 +45,7 @@ public class PairEditDialogController {
     public void init(Pair pair, Stage dialogStage) {
         this.pair = pair;
         this.dialogStage = dialogStage;
-
-        int weekDayOrdianl = mainApp.getWeekDayOrdinal();
-        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDayOrdianl);
+        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule();
 
         initChoiceBoxes();
         showDetails();
@@ -76,6 +72,7 @@ public class PairEditDialogController {
             cabinetField.setText(pair.getCabinet());
         } else {
             pair = new Pair();
+            pair.setWeekDay(mainApp.getWeekDayOrdinal());
             deleteButton.setVisible(false);
             numPairSpinner.getValueFactory().setValue(1);
             lessonsChoiceBox.getSelectionModel().selectFirst();
@@ -100,12 +97,8 @@ public class PairEditDialogController {
 
         pair.setCabinet(cabinetField.getText());
 
-        int num = numPairSpinner.getValue();
-
-        pair.setNum(num);
+        pair.setNum(numPairSpinner.getValue());
         weekSchedule.add(pair);
-
-        weekSchedule.sort(Comparator.comparing(Pair::getNum));
 
         mainApp.getWeekScheduleStorage().write();
 

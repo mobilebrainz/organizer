@@ -14,19 +14,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import static com.khodko.organizer.MainApp.mainApp;
+
 
 public class WeekScheduleController {
 
     @FXML
     public VBox dayVBox;
 
-    private MainApp mainApp;
     private List<List<Pair>> weekSchedule;
 
-    public void setMainApp(MainApp mainApp, String lesson) {
-        this.mainApp = mainApp;
+    public void init(String lesson) {
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule(lesson);
-
         showSchedule();
     }
 
@@ -43,7 +42,7 @@ public class WeekScheduleController {
 
                     DayScheduleController controller = loader.getController();
                     String dateString = DateUtil.weekDays[i];
-                    controller.setMainApp(mainApp, daySchedule, dateString, false);
+                    controller.init(daySchedule, dateString, false);
 
                 } catch (IOException e) {
                     e.printStackTrace();

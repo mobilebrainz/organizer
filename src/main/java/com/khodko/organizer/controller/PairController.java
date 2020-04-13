@@ -1,11 +1,11 @@
 package com.khodko.organizer.controller;
 
-import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+
+import static com.khodko.organizer.MainApp.mainApp;
 
 
 public class PairController {
@@ -44,12 +44,10 @@ public class PairController {
             "21:30"
     };
 
-    private MainApp mainApp;
     private Pair pair;
     private boolean isEdit;
 
-    public void setMainApp(MainApp mainApp, Pair pair, boolean isEdit) {
-        this.mainApp = mainApp;
+    public void setMainApp(Pair pair, boolean isEdit) {
         this.pair = pair;
         this.isEdit = isEdit;
 

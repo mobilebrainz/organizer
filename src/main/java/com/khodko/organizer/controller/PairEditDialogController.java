@@ -1,6 +1,5 @@
 package com.khodko.organizer.controller;
 
-import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
 
 import java.util.Collections;
@@ -15,6 +14,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import static com.khodko.organizer.MainApp.mainApp;
 
 
 public class PairEditDialogController {
@@ -37,20 +38,15 @@ public class PairEditDialogController {
     @FXML
     private Button deleteButton;
 
-    private MainApp mainApp;
     private Stage dialogStage;
     private Pair pair;
     private ObservableList<String> types = FXCollections.observableArrayList("ЛБ", "ПР", "Лекция");
 
     private List<Pair> weekSchedule;
 
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-
-    public void setMainApp(MainApp mainApp, Pair pair) {
-        this.mainApp = mainApp;
+    public void init(Pair pair, Stage dialogStage) {
         this.pair = pair;
+        this.dialogStage = dialogStage;
 
         int weekDayOrdianl = mainApp.getWeekDayOrdinal();
         weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule().get(weekDayOrdianl);
@@ -106,9 +102,6 @@ public class PairEditDialogController {
 
         int num = numPairSpinner.getValue();
 
-        // Удалить пару с тем же номером, что добавляется. Это обеспечит уникальность пары в расписании
-        weekSchedule.remove(getPair(num));
-
         pair.setNum(num);
         weekSchedule.add(pair);
 
@@ -117,15 +110,7 @@ public class PairEditDialogController {
         mainApp.getWeekScheduleStorage().write();
 
         dialogStage.close();
-    }
-
-    public Pair getPair(Integer num) {
-        for (Pair pair : weekSchedule) {
-            if (pair.getNum().equals(num)) {
-                return pair;
-            }
-        }
-        return null;
+        mainApp.showEditDaySchedule();
     }
 
     @FXML
@@ -133,6 +118,7 @@ public class PairEditDialogController {
         dialogStage.close();
         weekSchedule.remove(pair);
         mainApp.getWeekScheduleStorage().write();
+        mainApp.showEditDaySchedule();
     }
 
     @FXML

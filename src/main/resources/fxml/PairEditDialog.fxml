@@ -38,7 +38,7 @@
             <buttons>
                 <Button mnemonicParsing="false" onAction="#onOkBtn" text="OK"/>
                 <Button mnemonicParsing="false" onAction="#onCancelBtn" text="Отмена"/>
-                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить пару"/>
+                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteBtn" text="Удалить"/>
             </buttons>
         </ButtonBar>
     </VBox>

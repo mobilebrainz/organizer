@@ -2,16 +2,17 @@ package com.khodko.organizer.controller;
 
 import com.khodko.organizer.MainApp;
 import com.khodko.organizer.model.Pair;
-
-import java.io.IOException;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.util.List;
+
+import static com.khodko.organizer.MainApp.mainApp;
 
 
 public class DayScheduleController {
@@ -25,12 +26,10 @@ public class DayScheduleController {
     @FXML
     private Label dataLabel;
 
-    private MainApp mainApp;
     private List<Pair> daySchedule;
     private boolean isEdit;
 
-    public void setMainApp(MainApp mainApp, List<Pair> daySchedule, String dataString, boolean isEdit) {
-        this.mainApp = mainApp;
+    public void init(List<Pair> daySchedule, String dataString, boolean isEdit) {
         this.daySchedule = daySchedule;
         this.isEdit = isEdit;
 
@@ -49,7 +48,7 @@ public class DayScheduleController {
                 pairVBox.getChildren().add(pairLayout);
 
                 PairController controller = loader.getController();
-                controller.setMainApp(mainApp, pair, isEdit);
+                controller.setMainApp(pair, isEdit);
 
             } catch (IOException e) {
                 e.printStackTrace();

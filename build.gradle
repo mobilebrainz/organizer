@@ -13,10 +13,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
-}
-
 javafx {
     version = "13"
     modules = [ 'javafx.controls', 'javafx.fxml' ]

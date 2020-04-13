@@ -18,6 +18,7 @@ public class WeekScheduleStorage {
     private final String SCHEDULE_DIR = "src/main/resources/storage/";
     private final String SCHEDULE_FILE = "schedule.txt";
 
+    private final Path filePath = Paths.get(SCHEDULE_DIR + SCHEDULE_FILE);
     private final List<Pair> schedule = new ArrayList<>();
 
     public WeekScheduleStorage() {
@@ -26,8 +27,8 @@ public class WeekScheduleStorage {
 
     public void read() {
         try {
-            if (Files.exists(Paths.get(SCHEDULE_DIR + SCHEDULE_FILE))) {
-                List<String> lines = Files.readAllLines(Paths.get(SCHEDULE_DIR + SCHEDULE_FILE), UTF_8);
+            if (Files.exists(filePath)) {
+                List<String> lines = Files.readAllLines(filePath, UTF_8);
 
                 schedule.clear();
                 for (int i = 1; i < lines.size(); i++) {
@@ -60,8 +61,8 @@ public class WeekScheduleStorage {
                 Files.createDirectory(directory);
             }
 
-            Files.deleteIfExists(Paths.get(SCHEDULE_DIR + SCHEDULE_FILE));
-            Path file = Files.createFile(Paths.get(SCHEDULE_DIR + SCHEDULE_FILE));
+            Files.deleteIfExists(filePath);
+            Path file = Files.createFile(filePath);
             Files.write(file, lines, UTF_8);
 
         } catch (IOException e) {

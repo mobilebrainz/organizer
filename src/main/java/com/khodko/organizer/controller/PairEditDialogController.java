@@ -96,7 +96,7 @@ public class PairEditDialogController {
         pair.setPairType(type);
 
         pair.setCabinet(cabinetField.getText());
-
+        
         pair.setNum(numPairSpinner.getValue());
         weekSchedule.add(pair);
 

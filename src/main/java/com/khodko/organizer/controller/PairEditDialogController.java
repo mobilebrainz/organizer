@@ -4,10 +4,7 @@ import com.khodko.organizer.model.Pair;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.Collections;
@@ -36,6 +33,9 @@ public class PairEditDialogController {
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    public Label warningLabel;
 
     private Stage dialogStage;
     private Pair pair;
@@ -87,22 +87,34 @@ public class PairEditDialogController {
     public void onOkBtn() {
         schedule.remove(pair);
 
-        // todo: сделать проверку выбора урока, преподавателя.
-        //  Если null - вывести алерт с сообщением, что надо сначала добавить предмет или преподавателя в приложение
         String lesson = lessonsChoiceBox.getSelectionModel().getSelectedItem();
+        if (lesson == null) {
+            warningLabel.setVisible(true);
+            warningLabel.setText("Добавьте и выберите предмет!");
+            return;
+        }
         pair.setLesson(lesson);
 
         String teacher = teachersChoiceBox.getSelectionModel().getSelectedItem();
+        if (teacher == null) {
+            warningLabel.setVisible(true);
+            warningLabel.setText("Добавьте и выберите учителя!");
+            return;
+        }
         pair.setTeacher(teacher);
 
         String type = typesChoiceBox.getSelectionModel().getSelectedItem();
         pair.setPairType(type);
 
-        // todo: сделать проверку ввода номера кабинета
-        pair.setCabinet(cabinetField.getText().trim());
+        String cabinet = cabinetField.getText().trim();
+        if (cabinet.equals("")) {
+            warningLabel.setVisible(true);
+            warningLabel.setText("Введите номер кабинета!");
+            return;
+        }
+        pair.setCabinet(cabinet);
 
         int num = numPairSpinner.getValue();
-
         pair.setNum(num);
         schedule.add(pair);
 

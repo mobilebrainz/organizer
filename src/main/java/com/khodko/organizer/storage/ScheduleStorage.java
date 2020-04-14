@@ -13,19 +13,38 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * Класс для работы с расписанием:
+ * - хранение расписание в виде списка пар
+ * - чтение и запись из файла
+ * - выборка и удаление пар из расписания
+ */
+public class ScheduleStorage {
 
-public class WeekScheduleStorage {
-
+    /**
+     * Имя директория сохраняемого расписания.
+     */
     private final String SCHEDULE_DIR = "src/main/resources/storage/";
+    /**
+     * Имя файла сохраняемого расписания.
+     */
     private final String SCHEDULE_FILE = "schedule.txt";
-
+    /**
+     * Путь сохраняемого расписания.
+     */
     private final Path filePath = Paths.get(SCHEDULE_DIR + SCHEDULE_FILE);
+    /**
+     * Расписание в виде списка пар.
+     */
     private final List<Pair> schedule = new ArrayList<>();
 
-    public WeekScheduleStorage() {
+    public ScheduleStorage() {
         read();
     }
 
+    /**
+     * Читать с файла расписание.
+     */
     public void read() {
         try {
             if (Files.exists(filePath)) {
@@ -49,6 +68,9 @@ public class WeekScheduleStorage {
         }
     }
 
+    /**
+     * Записать в файл расписание.
+     */
     public void write() {
         try {
             List<String> lines = new ArrayList<>();
@@ -71,10 +93,21 @@ public class WeekScheduleStorage {
         }
     }
 
+    /**
+     * Получить расписание пар.
+     *
+     * @return список пар
+     */
     public List<Pair> getSchedule() {
         return schedule;
     }
 
+    /**
+     * Получить расписание пар для дня недели.
+     *
+     * @param weekDay порядковый номер дня недели (0...6)
+     * @return список пар для заданного дня недели
+     */
     public List<Pair> getDaySchedule(int weekDay) {
         List<Pair> daySchedule = new ArrayList<>();
         for (Pair pair : schedule) {
@@ -85,6 +118,12 @@ public class WeekScheduleStorage {
         return daySchedule;
     }
 
+    /**
+     * Получить расписание пар предмета.
+     *
+     * @param lesson предмет
+     * @return список пар для заданного предмета
+     */
     public List<Pair> getScheduleByLesson(String lesson) {
         if (lesson == null) return schedule;
 
@@ -97,6 +136,11 @@ public class WeekScheduleStorage {
         return lessonSchedule;
     }
 
+    /**
+     * Получить список предметов из расписания.
+     *
+     * @return список предметов в расписании
+     */
     public List<String> getScheduleLessons() {
         List<String> lessons = new ArrayList<>();
         for (Pair pair : schedule) {
@@ -107,6 +151,11 @@ public class WeekScheduleStorage {
         return lessons;
     }
 
+    /**
+     * Удалить пары из расписания для заданных предметов и сохранить изменённое расписание в файл.
+     *
+     * @param lessons список предметов
+     */
     public void deletePairsByLessons(List<String> lessons) {
         Iterator<Pair> iterator = schedule.iterator();
         while (iterator.hasNext()) {
@@ -118,6 +167,11 @@ public class WeekScheduleStorage {
         write();
     }
 
+    /**
+     * Удалить пары из расписания для заданных учителей и сохранить изменённое расписание в файл.
+     *
+     * @param teachers список учителей
+     */
     public void deletePairsByTeachers(List<String> teachers) {
         Iterator<Pair> iterator = schedule.iterator();
         while (iterator.hasNext()) {

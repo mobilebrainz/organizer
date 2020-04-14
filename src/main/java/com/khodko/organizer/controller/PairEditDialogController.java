@@ -46,7 +46,7 @@ public class PairEditDialogController {
     public void init(Pair pair, Stage dialogStage) {
         this.pair = pair;
         this.dialogStage = dialogStage;
-        schedule = mainApp.getWeekScheduleStorage().getSchedule();
+        schedule = mainApp.getScheduleStorage().getSchedule();
 
         initChoiceBoxes();
         showDetails();
@@ -121,7 +121,7 @@ public class PairEditDialogController {
         //todo: сделать свою сортировку
         schedule.sort(Comparator.comparing(Pair::getNum));
 
-        mainApp.getWeekScheduleStorage().write();
+        mainApp.getScheduleStorage().write();
 
         dialogStage.close();
         mainApp.showEditDaySchedule();
@@ -131,7 +131,7 @@ public class PairEditDialogController {
     public void onDeleteBtn() {
         dialogStage.close();
         schedule.remove(pair);
-        mainApp.getWeekScheduleStorage().write();
+        mainApp.getScheduleStorage().write();
         mainApp.showEditDaySchedule();
     }
 

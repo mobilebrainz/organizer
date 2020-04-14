@@ -74,7 +74,7 @@ public class RootController {
 
         ObservableList<String> observableLessons = FXCollections.observableArrayList();
         observableLessons.add(allLessonsItem);
-        observableLessons.addAll(mainApp.getWeekScheduleStorage().getScheduleLessons());
+        observableLessons.addAll(mainApp.getScheduleStorage().getScheduleLessons());
         lessonsChoiceBox.setItems(observableLessons);
 
         // вызывает слушателя на lessonsChoiceBox (см. в initialize())

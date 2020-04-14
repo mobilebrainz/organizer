@@ -2,7 +2,7 @@ package com.khodko.organizer.controller;
 
 
 import com.khodko.organizer.storage.LessonsStorage;
-import com.khodko.organizer.storage.WeekScheduleStorage;
+import com.khodko.organizer.storage.ScheduleStorage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -23,12 +23,12 @@ public class AddLessonsDialogController {
 
     private ObservableList<String> lessons;
     private LessonsStorage lessonsStorage;
-    private WeekScheduleStorage weekScheduleStorage;
+    private ScheduleStorage scheduleStorage;
 
     @FXML
     private void initialize() {
         lessonsStorage = mainApp.getLessonsStorage();
-        weekScheduleStorage = mainApp.getWeekScheduleStorage();
+        scheduleStorage = mainApp.getScheduleStorage();
         lessons = lessonsStorage.getLessons();
         listView.setItems(lessons);
     }
@@ -56,7 +56,7 @@ public class AddLessonsDialogController {
         ObservableList<String> selectedLessons = listView.getSelectionModel().getSelectedItems();
 
         // Удалить пары с удаляемыми предметами из расписания
-        weekScheduleStorage.deletePairsByLessons(selectedLessons);
+        scheduleStorage.deletePairsByLessons(selectedLessons);
 
         // Удалить предметы из памяти и файла
         lessons.removeAll(selectedLessons);

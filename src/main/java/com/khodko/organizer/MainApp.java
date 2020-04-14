@@ -6,7 +6,7 @@ import com.khodko.organizer.controller.WeekScheduleController;
 import com.khodko.organizer.model.Pair;
 import com.khodko.organizer.storage.LessonsStorage;
 import com.khodko.organizer.storage.TeachersStorage;
-import com.khodko.organizer.storage.WeekScheduleStorage;
+import com.khodko.organizer.storage.ScheduleStorage;
 import com.khodko.organizer.utils.DateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public class MainApp extends Application {
 
     private int weekDayOrdinal = 0;
 
-    private WeekScheduleStorage weekScheduleStorage = new WeekScheduleStorage();
+    private ScheduleStorage scheduleStorage = new ScheduleStorage();
     private LessonsStorage lessonsStorage = new LessonsStorage();
     private TeachersStorage teachersStorage = new TeachersStorage();
 
@@ -68,7 +68,7 @@ public class MainApp extends Application {
 
             rootLayout.setCenter(dayScheduleLayout);
 
-            List<Pair> daySchedule = weekScheduleStorage.getDaySchedule(weekDayOrdinal);
+            List<Pair> daySchedule = scheduleStorage.getDaySchedule(weekDayOrdinal);
 
             DayScheduleController controller = loader.getController();
             controller.init(daySchedule, DateUtil.weekDays[weekDayOrdinal], true);
@@ -89,7 +89,7 @@ public class MainApp extends Application {
             rootLayout.setCenter(dayScheduleLayout);
 
             int weekDay = date.getDayOfWeek().ordinal();
-            List<Pair> daySchedule = weekScheduleStorage.getDaySchedule(weekDay);
+            List<Pair> daySchedule = scheduleStorage.getDaySchedule(weekDay);
             String dataString = DateUtil.getDateString(date);
 
             DayScheduleController controller = loader.getController();
@@ -184,8 +184,8 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
-    public WeekScheduleStorage getWeekScheduleStorage() {
-        return weekScheduleStorage;
+    public ScheduleStorage getScheduleStorage() {
+        return scheduleStorage;
     }
 
     public LessonsStorage getLessonsStorage() {

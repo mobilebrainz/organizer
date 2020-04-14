@@ -2,7 +2,7 @@ package com.khodko.organizer.controller;
 
 
 import com.khodko.organizer.storage.TeachersStorage;
-import com.khodko.organizer.storage.WeekScheduleStorage;
+import com.khodko.organizer.storage.ScheduleStorage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -23,12 +23,12 @@ public class AddTeachersDialogController {
 
     private ObservableList<String> teachers;
     private TeachersStorage teachersStorage;
-    private WeekScheduleStorage weekScheduleStorage;
+    private ScheduleStorage scheduleStorage;
 
     @FXML
     private void initialize() {
         teachersStorage = mainApp.getTeachersStorage();
-        weekScheduleStorage = mainApp.getWeekScheduleStorage();
+        scheduleStorage = mainApp.getScheduleStorage();
         teachers = mainApp.getTeachersStorage().getTeachers();
         listView.setItems(teachers);
     }
@@ -56,7 +56,7 @@ public class AddTeachersDialogController {
         ObservableList<String> selectedTeachers = listView.getSelectionModel().getSelectedItems();
 
         // Удалить пары с удаляемыми предметами из расписания
-        weekScheduleStorage.deletePairsByTeachers(selectedTeachers);
+        scheduleStorage.deletePairsByTeachers(selectedTeachers);
 
         // Удалить преподавателей из памяти и файла
         teachers.removeAll(selectedTeachers);

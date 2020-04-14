@@ -26,7 +26,7 @@ public class WeekScheduleController {
     private List<Pair> weekSchedule;
 
     public void init(String lesson) {
-        weekSchedule = mainApp.getWeekScheduleStorage().getWeekSchedule(lesson);
+        weekSchedule = mainApp.getWeekScheduleStorage().getScheduleByLesson(lesson);
         showSchedule();
     }
 

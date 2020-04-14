@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -84,7 +85,7 @@ public class WeekScheduleStorage {
         return daySchedule;
     }
 
-    public List<Pair> getWeekSchedule(String lesson) {
+    public List<Pair> getScheduleByLesson(String lesson) {
         if (lesson == null) return schedule;
 
         List<Pair> lessonSchedule = new ArrayList<>();
@@ -104,6 +105,28 @@ public class WeekScheduleStorage {
             }
         }
         return lessons;
+    }
+
+    public void deletePairsByLessons(List<String> lessons) {
+        Iterator<Pair> iterator = schedule.iterator();
+        while (iterator.hasNext()) {
+            Pair pair = iterator.next();
+            if (lessons.contains(pair.getLesson())) {
+                iterator.remove();
+            }
+        }
+        write();
+    }
+
+    public void deletePairsByTeachers(List<String> teachers) {
+        Iterator<Pair> iterator = schedule.iterator();
+        while (iterator.hasNext()) {
+            Pair pair = iterator.next();
+            if (teachers.contains(pair.getTeacher())) {
+                iterator.remove();
+            }
+        }
+        write();
     }
 
 }
